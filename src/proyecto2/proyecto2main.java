@@ -4,6 +4,9 @@
  */
 package proyecto2;
 
+import UIs.LoadArchiveUI;
+import UIs.TimerUI;
+
 /**
  *
  * @author Dell
@@ -14,7 +17,10 @@ public class proyecto2main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        LoadArchiveUI ventanaload = new LoadArchiveUI();
+        ventanaload.setVisible(true);
+        TimerUI ventanatimer = new TimerUI();
+        ventanatimer.setVisible(true);
     }
     
 }
