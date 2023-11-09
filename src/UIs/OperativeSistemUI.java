@@ -124,11 +124,19 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UsersOpButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsersOpButtActionPerformed
-        // TODO add your handling code here:
+        // Visualización de UsersOperations
+        this.setVisible(false);
+        UsersOperationsUI ventanausersop = new UsersOperationsUI();
+        ventanausersop.setVisible(true);
+        
+        
     }//GEN-LAST:event_UsersOpButtActionPerformed
 
     private void ArchivesOpButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArchivesOpButtActionPerformed
-        // TODO add your handling code here:
+        // Visualización de ArchivesOperations
+        this.setVisible(false);
+        ArchivesOperationsUI ventanaarchivesop = new ArchivesOperationsUI();
+        ventanaarchivesop.setVisible(true);
     }//GEN-LAST:event_ArchivesOpButtActionPerformed
 
     private void LiberarImpresoraButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarImpresoraButtActionPerformed

@@ -15,6 +15,8 @@ public class UsersOperationsUI extends javax.swing.JFrame {
      */
     public UsersOperationsUI() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,6 +29,15 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Title3 = new javax.swing.JLabel();
+        AddUserTF = new javax.swing.JTextField();
+        RemoveUserTF = new javax.swing.JTextField();
+        Lab1 = new javax.swing.JLabel();
+        Lab2 = new javax.swing.JLabel();
+        AddUserButt = new javax.swing.JButton();
+        RemoveUserButt = new javax.swing.JButton();
+        BackToSOButt = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -34,8 +45,55 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
 
+        Title3.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        Title3.setForeground(new java.awt.Color(255, 255, 255));
+        Title3.setText("Operaciones con usuarios");
+        getContentPane().add(Title3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 50));
+        getContentPane().add(AddUserTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 560, 50));
+        getContentPane().add(RemoveUserTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 560, 50));
+
+        Lab1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Lab1.setForeground(new java.awt.Color(255, 255, 255));
+        Lab1.setText("Especificar el nombre del usuario y el cargo que este emplea");
+        getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 540, 40));
+
+        Lab2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Lab2.setForeground(new java.awt.Color(255, 255, 255));
+        Lab2.setText("Especificar el nombre del usuario");
+        getContentPane().add(Lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 420, 40));
+
+        AddUserButt.setBackground(new java.awt.Color(102, 255, 102));
+        AddUserButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        AddUserButt.setText("Añadir usuario");
+        getContentPane().add(AddUserButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 210, 50));
+
+        RemoveUserButt.setBackground(new java.awt.Color(255, 102, 102));
+        RemoveUserButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        RemoveUserButt.setText("Eliminar usuario");
+        getContentPane().add(RemoveUserButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 210, 50));
+
+        BackToSOButt.setBackground(new java.awt.Color(102, 255, 255));
+        BackToSOButt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        BackToSOButt.setText("Volver a SO");
+        BackToSOButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackToSOButtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BackToSOButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, 150, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs/BackgroundUsersOperations.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 500));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackToSOButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToSOButtActionPerformed
+        this.setVisible(false);
+        OperativeSistemUI ventanaso = new OperativeSistemUI();
+        ventanaso.setVisible(true);
+        
+    }//GEN-LAST:event_BackToSOButtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,6 +131,15 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddUserButt;
+    private javax.swing.JTextField AddUserTF;
+    private javax.swing.JButton BackToSOButt;
+    private javax.swing.JLabel Lab1;
+    private javax.swing.JLabel Lab2;
+    private javax.swing.JButton RemoveUserButt;
+    private javax.swing.JTextField RemoveUserTF;
+    private javax.swing.JLabel Title3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
