@@ -9,15 +9,64 @@ package Tree;
  * @author Dell
  */
 public class Node {
-    
+    private String name;
+    private int prioridad;
+    private int tiempo;
+    private int size;
+    private String type;
     private Node left;
     private Node right;
-    public Object data;
-    
-    public Node(Object data){
-        this.data = data;
+    public int data;
+
+    public Node(int data) {
+        this.name = name;
+        this.prioridad = 0;
+        this.tiempo = 0;
+        this.size = 0;
+        this.type = type;
         this.left = null;
         this.right = null;
+        this.data = 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Node getLeft() {
@@ -36,13 +85,14 @@ public class Node {
         this.right = right;
     }
 
-    public Object getData() {
+    public int getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(int data) {
         this.data = data;
     }
+    
     
     
 }
