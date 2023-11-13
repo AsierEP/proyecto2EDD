@@ -9,13 +9,11 @@ package Tree;
  * @author Dell
  */
 public class MinHeap {
-    
+ 
     private Node root;
-    private int size;
 
-    public MinHeap(Node root, int size) {
+    public MinHeap() {
         this.root = null;
-        this.size = 0;
     }
 
     public Node getRoot() {
@@ -25,41 +23,149 @@ public class MinHeap {
     public void setRoot(Node root) {
         this.root = root;
     }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
+    
     
     public boolean isEmpty(){
-        return root == null;
+        return getRoot() == null;
     }
     
-    public boolean isLeftEmpty(Node nodo){
-        return nodo.getLeft() == null;
-    }
-    
-    public void insert(int data){
-        if(isEmpty() == false){
-            addDocument(root, data);
-        }else{
-            root = new Node(data);
+    public void addNode(String Nombre, int prioridad, int size, String type){
+        Node nodo = new Node(Nombre, size, prioridad, type);
+        
+        if(isEmpty()){
+            setRoot(nodo);
         }
-    }
-    
-    public void addDocument(Node nodo, int data){
-        if(data >= nodo.getData()){
-            if(isLeftEmpty(nodo) == false){
-                nodo.setLeft(nodo);
-            }else{
-                nodo.setRight(nodo);
+        else{
+            Node pointer = getRoot();
+            while(true){
+                if(prioridad > pointer.getPrioridad()){
+                    if(pointer.getLeft() == null){
+                        pointer.setLeft(nodo);
+                        heapifyUp(nodo);
+                        break;
+                    }
+                    else{
+                        pointer = pointer.getLeft();
+                    }
+                }
+                else{
+                    if(pointer.getRight() == null){
+                        pointer.setRight(nodo);
+                        heapifyUp(nodo);
+                        break;
+                    }
+                    else{
+                        pointer = pointer.getRight();
+                    }
+                }
             }
-        }else{
-            this.setRoot(nodo);
-            
         }
+    }
+    
+    
+    public Node Eliminar_Min(){
+        if(isEmpty()){
+            System.out.println("El árbol está vacio");
+            return null;
+        }else{
+            Node pointer = getRoot();
+
+            
+            Node pointer2 = getLastNode();
+            setRoot(pointer2);
+            heapifyDown(getRoot());
+            return pointer;
+        }
+    }
+    
+    public void heapifyUp(Node nodo){
+        if(nodo == getRoot()){
+            return;
+        }
+        
+        Node subRoot = searchSubRoot(getRoot(), nodo);
+        
+        if(nodo.getPrioridad() < subRoot.getPrioridad()){
+            swapNodes(nodo, subRoot);
+            heapifyUp(nodo);
+        }
+    }
+
+    public void heapifyDown(Node nodo){
+       Node pointer = nodo;
+       if(pointer.getLeft() != null && pointer.getLeft().getPrioridad() > pointer.getPrioridad()){
+            pointer.setLeft(pointer.getLeft());
+        }
+       else if(pointer.getRight() != null && pointer.getRight().getPrioridad() > pointer.getPrioridad()){
+           pointer.setRight(pointer.getRight());
+       }
+       if(pointer != nodo){
+           swapNodes(nodo, pointer);
+           heapifyDown(pointer);
+       }
+    }
+    
+    
+        
+    public Node searchSubRoot(Node pointer, Node pointer2){
+        if(pointer.getLeft() == pointer2 || pointer.getRight() == pointer2){
+            return pointer;
+        }
+        
+        Node leftSubRoot = searchSubRoot(pointer.getLeft(), pointer2);
+        if(leftSubRoot != null){
+            return leftSubRoot;
+        }
+        
+        Node rightSubRoot = searchSubRoot(pointer.getRight(), pointer2);
+        return rightSubRoot;
+    }
+    
+        
+        public Node getLastNode(){
+        Node pointer = getRoot();
+        Node pointer2 = null;
+        
+        while(pointer.getRight() != null){
+            pointer = pointer.getRight();
+        }
+        
+        if(pointer.getLeft() != null){
+            pointer2 = pointer.getLeft();
+            pointer.setLeft(null);
+        }
+        else{
+            pointer2 = pointer;
+        }
+        
+        return pointer2;
+    }
+    
+    
+    public void swapNodes(Node node1, Node node2){
+        Node temp = node1;
+        node1 = node2;
+        node2 = temp;
+    }
+    
+    
+    public void print(){
+        RecursivePrint(getRoot());
+    }
+    
+    public void RecursivePrint(Node pointer){
+        if(pointer == null){
+            return;
+        }
+            System.out.println("Nombre: " + pointer.getName());
+            System.out.println("Prioridad: " + pointer.getPrioridad());
+            System.out.println("Tamaño: " + pointer.getSize());
+            System.out.println("Tipo: " + pointer.getType());
+            System.out.println();
+
+            RecursivePrint(pointer.getLeft());
+            RecursivePrint(pointer.getRight());
+        
     }
 }
+

@@ -16,9 +16,8 @@ public class Node {
     private String type;
     private Node left;
     private Node right;
-    public int data;
 
-    public Node(int data) {
+    public Node(String name, int size, int prioridad, String type) {
         this.name = name;
         this.prioridad = 0;
         this.tiempo = 0;
@@ -26,7 +25,6 @@ public class Node {
         this.type = type;
         this.left = null;
         this.right = null;
-        this.data = 0;
     }
 
     public String getName() {
@@ -84,15 +82,4 @@ public class Node {
     public void setRight(Node right) {
         this.right = right;
     }
-
-    public int getData() {
-        return data;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-    
-    
-    
 }
