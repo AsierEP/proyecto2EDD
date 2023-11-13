@@ -14,11 +14,11 @@ public interface Methods_Lista_Documentos {
     
     public boolean IsEmpty();
     
-    public void AddStart(Object element);
+    public void AddStart(Object data);
     
-    public void AddEnd(Object element);
+    public void AddEnd(Object data);
     
-    public void AddAtIndex(Object element, int index);
+    public void AddAtIndex(Object data, int index);
     
     public Object DeleteStart();
 
