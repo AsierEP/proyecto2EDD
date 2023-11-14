@@ -16,9 +16,6 @@ public class TimerUI extends javax.swing.JFrame {
     
     
     private Timer myTimer;
-    private int dias = 0;
-    private int horas = 0;
-    private int minutos = 0;
     private int segundos = 0;
 
 
@@ -41,23 +38,9 @@ public class TimerUI extends javax.swing.JFrame {
     
     private void UpdateTime(){
         segundos++;
-        
-        if(segundos == 60){
-            segundos = 0;
-            minutos++;
-        }
-        if(minutos == 60){
-            minutos = 0;
-            horas++;
-        }
-        if(horas == 24){
-            horas = 0;
-            dias++;
-        }
     }
-    
     private void UpdateLabel(){
-        String cronometro = dias + "d:" + horas + "h:" + minutos + "m:" + segundos + "s:";
+        String cronometro = segundos + "s";
         TimerLab.setText(cronometro);
     }
 
@@ -75,7 +58,6 @@ public class TimerUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TimerLab = new javax.swing.JLabel();
         StartTimerButt = new javax.swing.JButton();
-        StopTimerButt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
@@ -90,7 +72,8 @@ public class TimerUI extends javax.swing.JFrame {
         jLabel2.setText("Cronómetro");
 
         TimerLab.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        TimerLab.setText("0d : 0h : 0m : 0s");
+        TimerLab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TimerLab.setText("0s");
 
         StartTimerButt.setBackground(new java.awt.Color(51, 255, 51));
         StartTimerButt.setText("Iniciar");
@@ -100,47 +83,31 @@ public class TimerUI extends javax.swing.JFrame {
             }
         });
 
-        StopTimerButt.setBackground(new java.awt.Color(255, 102, 102));
-        StopTimerButt.setText("Detener");
-        StopTimerButt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StopTimerButtActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(StartTimerButt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(173, 173, 173)
-                        .addComponent(StopTimerButt, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(108, 108, 108)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(StartTimerButt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(StartTimerButt, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(StopTimerButt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31))
+                .addGap(18, 18, 18)
+                .addComponent(StartTimerButt, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 210));
@@ -152,11 +119,6 @@ public class TimerUI extends javax.swing.JFrame {
         myTimer.start();
         StartTimerButt.setEnabled(false);
     }//GEN-LAST:event_StartTimerButtActionPerformed
-
-    private void StopTimerButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopTimerButtActionPerformed
-        myTimer.stop();
-        StopTimerButt.setEnabled(true);
-    }//GEN-LAST:event_StopTimerButtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,7 +157,6 @@ public class TimerUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton StartTimerButt;
-    private javax.swing.JButton StopTimerButt;
     private javax.swing.JLabel TimerLab;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

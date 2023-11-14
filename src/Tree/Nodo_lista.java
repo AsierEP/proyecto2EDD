@@ -11,7 +11,7 @@ package Tree;
 public class Nodo_lista {
     
     private Object data;
-    private Nodo_lista pNext;
+    public Nodo_lista pNext;
 
     public Nodo_lista(Object data) {
         this.data = data;

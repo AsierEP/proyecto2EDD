@@ -119,21 +119,42 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
         }
     }
 
-//    @Override
-//    public Object DeleteEnd() {
-//        if(IsEmpty() == true){
-//            return null;
-//        }else{
-//        }
-//    }
-
     @Override
     public Object deleteAtIndex(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(index < 0 || index >= size){
+            System.out.println("index inválido");
+            return null;
+        }else if(index == 0){
+            DeleteStart();
+            return pFirst;
+        }else if(index == size -1){
+            DeleteEnd();
+            return pLast;
+
+        }else{
+            Nodo_lista pAux = pFirst;
+            for(int i = 0; i < index - 1; i++){
+                pAux = pAux.pNext;
+            }
+            pAux.pNext = pAux.pNext.pNext;
+            size--;
+            return pAux.pNext;
+        }
     }
 
     @Override
     public Object DeleteEnd() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(IsEmpty() == true || pFirst.pNext == null){
+            return null;
+        }
+        Nodo_lista pAux = pFirst;
+        
+        while(pAux.pNext.pNext != null){
+            pAux = pAux.pNext;
+        }
+        
+        pAux.pNext = null;
+        size--;
+        return pFirst;
     }
 }
