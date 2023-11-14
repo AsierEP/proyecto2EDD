@@ -13,7 +13,7 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
     private Nodo_lista pLast;
     private int size;
 
-    public Lista_Documentos(Nodo_lista pFirst, int size) {
+    public Lista_Documentos() {
         this.pFirst = null;
         this.size = 0;
     }
@@ -157,4 +157,30 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
         size--;
         return pFirst;
     }
+    
+    public Nodo_lista searchByIndex(int index){
+        Nodo_lista pAux = this.pFirst;
+        int count = 0;
+        
+        while(pAux != null && count != index){
+            pAux = pAux.getpNext();
+            count++;
+        }
+        
+        if(pAux != null){
+            return pAux;
+        }else{
+            return null;
+        }
+    }
+    
+        public void print(){
+        Nodo_lista pAux = this.pFirst;
+        
+        while(pAux != null){
+            System.out.println(pAux.getData());
+            pAux = pAux.getpNext();
+        }
+    }
+    
 }
