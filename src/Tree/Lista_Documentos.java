@@ -9,8 +9,8 @@ package Tree;
  * @author Dell
  */
 public class Lista_Documentos implements Methods_Lista_Documentos {
-    private Nodo_lista pFirst;
-    private Nodo_lista pLast;
+    private Node pFirst;
+    private Node pLast;
     private int size;
 
     public Lista_Documentos() {
@@ -18,11 +18,11 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
         this.size = 0;
     }
 
-    public Nodo_lista getpFirst() {
+    public Node getpFirst() {
         return pFirst;
     }
 
-    public void setpFirst(Nodo_lista pFirst) {
+    public void setpFirst(Node pFirst) {
         this.pFirst = pFirst;
     }
 
@@ -34,11 +34,11 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
         this.size = size;
     }
 
-    public Nodo_lista getpLast() {
+    public Node getpLast() {
         return pLast;
     }
 
-    public void setpLast(Nodo_lista pLast) {
+    public void setpLast(Node pLast) {
         this.pLast = pLast;
     }
     
@@ -53,8 +53,8 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
     }
 
     @Override
-    public void AddStart(Object data) {
-        Nodo_lista newNode = new Nodo_lista(data);
+    public void AddStart(String name, int tamano, int tiempo, String type) {
+        Node newNode = new Node(name, tamano, tiempo, type);
         if(IsEmpty() == true){
             pFirst = newNode;
             pLast = newNode;
@@ -68,8 +68,8 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
     }
 
     @Override
-    public void AddEnd(Object data) {
-        Nodo_lista newNode = new Nodo_lista(data);
+    public void AddEnd(String name, int tamano, int tiempo, String type) {
+        Node newNode = new Node(name, tamano, tiempo, type);
         if(IsEmpty() == true){
             pFirst = newNode;
             size++;
@@ -82,20 +82,20 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
     }
 
     @Override
-    public void AddAtIndex(Object data, int index) {
+    public void AddAtIndex(String name, int size, int tiempo, String type, int index) {
         boolean run = true;
-        Nodo_lista newNode = new Nodo_lista(data);
+        Node newNode = new Node(name, size, tiempo, type);
         while(run == true){
             if(index < 0 || index >= len()){
                 run = false;
             }
             else{
                 if(index == 0){
-                    AddStart(data);
+                    AddStart(name, size, tiempo, type);
                     run = false;
                 }
                 else{
-                    Nodo_lista pointer = pFirst;
+                    Node pointer = pFirst;
                     for(int x = 1; x < index; x++){
                         pointer = pointer.getpNext();
                     }
@@ -132,7 +132,7 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
             return pLast;
 
         }else{
-            Nodo_lista pAux = pFirst;
+            Node pAux = pFirst;
             for(int i = 0; i < index - 1; i++){
                 pAux = pAux.pNext;
             }
@@ -147,7 +147,7 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
         if(IsEmpty() == true || pFirst.pNext == null){
             return null;
         }
-        Nodo_lista pAux = pFirst;
+        Node pAux = pFirst;
         
         while(pAux.pNext.pNext != null){
             pAux = pAux.pNext;
@@ -158,8 +158,8 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
         return pFirst;
     }
     
-    public Nodo_lista searchByIndex(int index){
-        Nodo_lista pAux = this.pFirst;
+    public Node searchByIndex(int index){
+        Node pAux = this.pFirst;
         int count = 0;
         
         while(pAux != null && count != index){
@@ -175,12 +175,14 @@ public class Lista_Documentos implements Methods_Lista_Documentos {
     }
     
         public void print(){
-        Nodo_lista pAux = this.pFirst;
+        Node pAux = this.pFirst;
         
         while(pAux != null){
-            System.out.println(pAux.getData());
+            System.out.println("Nombre : " + pAux.getName());
+            System.out.println("Size : " + pAux.getSize());
+            System.out.println("Tiempo : " + pAux.getTiempo());
+            System.out.println("Tipo : " + pAux.getType());
             pAux = pAux.getpNext();
         }
     }
-    
 }

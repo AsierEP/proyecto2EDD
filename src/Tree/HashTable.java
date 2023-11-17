@@ -11,15 +11,15 @@ package Tree;
 public class HashTable {
     
     private int size;
-    public Lista_Documentos[] table;
+    public Usuario[] table;
 
-    public HashTable(int size) {
-        this.size = size;
-        this.table = table;
+    public HashTable() {
+        this.size = 100;
+        this.table = new Usuario[100];
         
         
-        for(int i = 0; i < size; size++){
-            Lista_Documentos auxList = new Lista_Documentos();
+        for(int i = 0; i < size; i++){
+            Usuario auxList =new  Usuario("", "", null);
             this.table[i] = auxList;
         }
     }
@@ -32,11 +32,11 @@ public class HashTable {
         this.size = size;
     }
 
-    public Lista_Documentos[] getTable() {
+    public Usuario[] getTable() {
         return table;
     }
 
-    public void setTable(Lista_Documentos[] table) {
+    public void setTable(Usuario[] table) {
         this.table = table;
     }
     
@@ -45,10 +45,14 @@ public class HashTable {
         return Math.abs(Hashcode) % table.length;
     }
     
-    public void Add(Usuario Usuario){
-        String usuario = Usuario.getNombre();
+    public void Add(Usuario user){
+        String usuario = user.getNombre();
         int index = HashFunction(usuario);
-        table[index].AddAtIndex(usuario, index);
+        System.out.println(index);
+        if ("".equals(this.table[index].getNombre())){
+            this.table[index] = user;
+        }
+        this.table[index].AddAtIndex(usuario, index);
     }
     
     public void Delete(Usuario Usuario){

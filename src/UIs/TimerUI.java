@@ -16,7 +16,7 @@ public class TimerUI extends javax.swing.JFrame {
     
     
     private Timer myTimer;
-    private int segundos = 0;
+    public int segundos = 0;
 
 
     /**
@@ -40,7 +40,7 @@ public class TimerUI extends javax.swing.JFrame {
         segundos++;
     }
     private void UpdateLabel(){
-        String cronometro = segundos + "s";
+        String cronometro = String.valueOf(segundos);
         TimerLab.setText(cronometro);
     }
 
@@ -58,6 +58,7 @@ public class TimerUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TimerLab = new javax.swing.JLabel();
         StartTimerButt = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
@@ -72,8 +73,8 @@ public class TimerUI extends javax.swing.JFrame {
         jLabel2.setText("Cronómetro");
 
         TimerLab.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        TimerLab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TimerLab.setText("0s");
+        TimerLab.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TimerLab.setText("0");
 
         StartTimerButt.setBackground(new java.awt.Color(51, 255, 51));
         StartTimerButt.setText("Iniciar");
@@ -82,6 +83,9 @@ public class TimerUI extends javax.swing.JFrame {
                 StartTimerButtActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        jLabel3.setText("s");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -92,21 +96,27 @@ public class TimerUI extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(StartTimerButt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(StartTimerButt, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(StartTimerButt, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addGap(25, 25, 25))
         );
 
@@ -159,6 +169,7 @@ public class TimerUI extends javax.swing.JFrame {
     private javax.swing.JButton StartTimerButt;
     private javax.swing.JLabel TimerLab;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

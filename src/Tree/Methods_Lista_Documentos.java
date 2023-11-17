@@ -14,11 +14,11 @@ public interface Methods_Lista_Documentos {
     
     public boolean IsEmpty();
     
-    public void AddStart(Object data);
+    public void AddStart(String name, int size, int tiempo, String type);
     
-    public void AddEnd(Object data);
+    public void AddEnd(String name, int size, int tiempo, String type);
     
-    public void AddAtIndex(Object data, int index);
+    public void AddAtIndex(String name, int size, int tiempo, String type, int index);
     
     public Object DeleteStart();
 

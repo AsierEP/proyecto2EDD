@@ -4,12 +4,19 @@
  */
 package UIs;
 
+import Tree.HashTable;
+import Tree.Lista_Documentos;
+import Tree.Usuario;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 /**
  *
  * @author Dell
  */
 public class ArchivesOperationsUI extends javax.swing.JFrame {
-
+    private Timer myTimer;
+    public int segundos = 0;
     /**
      * Creates new form ArchivesOperationsUI
      */
@@ -17,8 +24,21 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        myTimer = new Timer(1000, (ActionEvent e) -> {
+            StartTimer();
+        });
+        myTimer.start();
+        
     }
-
+    private void StartTimer(){
+        UpdateTime();
+        
+        
+    }
+    
+    private void UpdateTime(){
+        segundos++;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,6 +147,17 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
 
     private void SendArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendArchiveButtActionPerformed
         // TODO add your handling code here:
+        HashTable pruebaHash = new HashTable();
+        Lista_Documentos x = new Lista_Documentos();
+        x.AddStart("pakalk", 45, 32, "PDF");
+        x.AddEnd("jbjqbkq", 29, 76, "snsn");
+        x.getpLast().setTiempo(segundos);        
+        x.getpFirst().setTiempo(segundos/2);
+
+        x.print();
+        Usuario usuario1 = new Usuario( "Juan",  "Alta",  x);
+        pruebaHash.Add(usuario1);
+        pruebaHash.Print();
     }//GEN-LAST:event_SendArchiveButtActionPerformed
 
     private void BackToSOButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToSOButtActionPerformed

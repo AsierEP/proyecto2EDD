@@ -10,21 +10,24 @@ package Tree;
  */
 public class Node {
     private String name;
-    private int prioridad;
+    private boolean prioridad;
     private int tiempo;
     private int size;
     private String type;
     private Node left;
     private Node right;
+    public Node pNext;
 
-    public Node(String name, int size, int prioridad, String type) {
+    public Node(String name, int size, int tiempo, String type) {
         this.name = name;
-        this.prioridad = 0;
-        this.tiempo = 0;
-        this.size = 0;
+        this.prioridad = false;
+        this.tiempo = tiempo;
+        this.size = size;
         this.type = type;
         this.left = null;
         this.right = null;
+        this.pNext = null;
+
     }
 
     public String getName() {
@@ -35,11 +38,11 @@ public class Node {
         this.name = name;
     }
 
-    public int getPrioridad() {
+    public boolean isPrioridad() {
         return prioridad;
     }
 
-    public void setPrioridad(int prioridad) {
+    public void setPrioridad(boolean prioridad) {
         this.prioridad = prioridad;
     }
 
@@ -82,4 +85,16 @@ public class Node {
     public void setRight(Node right) {
         this.right = right;
     }
+
+    public Node getpNext() {
+        return pNext;
+    }
+
+    public void setpNext(Node pNext) {
+        this.pNext = pNext;
+    }
+    
+    
+
+
 }

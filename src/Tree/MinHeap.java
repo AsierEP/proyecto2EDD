@@ -29,8 +29,8 @@ public class MinHeap {
         return getRoot() == null;
     }
     
-    public void addNode(String Nombre, int prioridad, int size, String type){
-        Node nodo = new Node(Nombre, size, prioridad, type);
+    public void addNode(String Nombre, int tiempo, int size, String type){
+        Node nodo = new Node(Nombre, size, tiempo, type);
         
         if(isEmpty()){
             setRoot(nodo);
@@ -38,7 +38,7 @@ public class MinHeap {
         else{
             Node pointer = getRoot();
             while(true){
-                if(prioridad > pointer.getPrioridad()){
+                if(tiempo > pointer.getTiempo()){
                     if(pointer.getLeft() == null){
                         pointer.setLeft(nodo);
                         heapifyUp(nodo);
@@ -84,19 +84,21 @@ public class MinHeap {
         }
         
         Node subRoot = searchSubRoot(getRoot(), nodo);
-        
-        if(nodo.getPrioridad() < subRoot.getPrioridad()){
+        if (subRoot != null){
+          if(nodo.getTiempo() < subRoot.getTiempo()){
             swapNodes(nodo, subRoot);
             heapifyUp(nodo);
+        }  
         }
+        
     }
 
     public void heapifyDown(Node nodo){
        Node pointer = nodo;
-       if(pointer.getLeft() != null && pointer.getLeft().getPrioridad() > pointer.getPrioridad()){
+       if(pointer.getLeft() != null && pointer.getLeft().getTiempo() > pointer.getTiempo()){
             pointer.setLeft(pointer.getLeft());
         }
-       else if(pointer.getRight() != null && pointer.getRight().getPrioridad() > pointer.getPrioridad()){
+       else if(pointer.getRight() != null && pointer.getRight().getTiempo() > pointer.getTiempo()){
            pointer.setRight(pointer.getRight());
        }
        if(pointer != nodo){
@@ -118,7 +120,11 @@ public class MinHeap {
         }
         
         Node rightSubRoot = searchSubRoot(pointer.getRight(), pointer2);
-        return rightSubRoot;
+        
+        if(rightSubRoot != null){
+            return rightSubRoot;
+        }
+        return null;
     }
     
         
@@ -158,8 +164,8 @@ public class MinHeap {
             return;
         }
             System.out.println("Nombre: " + pointer.getName());
-            System.out.println("Prioridad: " + pointer.getPrioridad());
-            System.out.println("Tamaño: " + pointer.getSize());
+            System.out.println("Tiempo: " + pointer.getTiempo());
+            System.out.println("Size: " + pointer.getSize());
             System.out.println("Tipo: " + pointer.getType());
             System.out.println();
 
