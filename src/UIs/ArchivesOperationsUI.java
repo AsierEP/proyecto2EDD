@@ -4,9 +4,6 @@
  */
 package UIs;
 
-import Tree.HashTable;
-import Tree.Lista_Documentos;
-import Tree.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -146,18 +143,7 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveArchiveButtActionPerformed
 
     private void SendArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendArchiveButtActionPerformed
-        // TODO add your handling code here:
-        HashTable pruebaHash = new HashTable();
-        Lista_Documentos x = new Lista_Documentos();
-        x.AddStart("pakalk", 45, 32, "PDF");
-        x.AddEnd("jbjqbkq", 29, 76, "snsn");
-        x.getpLast().setTiempo(segundos);        
-        x.getpFirst().setTiempo(segundos/2);
-
-        x.print();
-        Usuario usuario1 = new Usuario( "Juan",  "Alta",  x);
-        pruebaHash.Add(usuario1);
-        pruebaHash.Print();
+        //
     }//GEN-LAST:event_SendArchiveButtActionPerformed
 
     private void BackToSOButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToSOButtActionPerformed

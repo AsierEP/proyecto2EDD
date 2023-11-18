@@ -31,9 +31,7 @@ public class LoadArchiveUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Title1 = new javax.swing.JLabel();
         Lab1 = new javax.swing.JLabel();
-        Lab2 = new javax.swing.JLabel();
         LoadArchiveButt = new javax.swing.JButton();
-        PredetArchiveButt = new javax.swing.JButton();
         Background1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,13 +47,8 @@ public class LoadArchiveUI extends javax.swing.JFrame {
 
         Lab1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         Lab1.setForeground(new java.awt.Color(255, 255, 255));
-        Lab1.setText("Por favor seleccione la opción que desea realizar, la opción de utilizar un archivo predeterminado utilizará");
+        Lab1.setText("Bienvenido al proyecto de la cola de impresión con montículo binario, por favor cargue un archivo CSV");
         getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 880, 40));
-
-        Lab2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        Lab2.setForeground(new java.awt.Color(255, 255, 255));
-        Lab2.setText("un archivo de tipo CSV por defecto");
-        getContentPane().add(Lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 580, 40));
 
         LoadArchiveButt.setBackground(new java.awt.Color(102, 102, 255));
         LoadArchiveButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -65,17 +58,7 @@ public class LoadArchiveUI extends javax.swing.JFrame {
                 LoadArchiveButtActionPerformed(evt);
             }
         });
-        getContentPane().add(LoadArchiveButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 320, 70));
-
-        PredetArchiveButt.setBackground(new java.awt.Color(102, 102, 255));
-        PredetArchiveButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        PredetArchiveButt.setText("Utilizar archivo predeterminado");
-        PredetArchiveButt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PredetArchiveButtActionPerformed(evt);
-            }
-        });
-        getContentPane().add(PredetArchiveButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 340, 70));
+        getContentPane().add(LoadArchiveButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 320, 70));
 
         Background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs/BackGroundLoad.png"))); // NOI18N
         getContentPane().add(Background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 530));
@@ -93,10 +76,6 @@ public class LoadArchiveUI extends javax.swing.JFrame {
         OperativeSistemUI ventanaoperative = new OperativeSistemUI();
         ventanaoperative.setVisible(true);
     }//GEN-LAST:event_LoadArchiveButtActionPerformed
-
-    private void PredetArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PredetArchiveButtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PredetArchiveButtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,9 +115,7 @@ public class LoadArchiveUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background1;
     private javax.swing.JLabel Lab1;
-    private javax.swing.JLabel Lab2;
     private javax.swing.JButton LoadArchiveButt;
-    private javax.swing.JButton PredetArchiveButt;
     private javax.swing.JLabel Title1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

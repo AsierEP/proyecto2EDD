@@ -4,6 +4,7 @@
  */
 package UIs;
 
+
 /**
  *
  * @author Dell
@@ -13,6 +14,10 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     /**
      * Creates new form UsersOperationsUI
      */
+    
+    public javax.swing.JTextField getPrioridad(){
+        return AddUserPrioTF;
+    }
     public UsersOperationsUI() {
         initComponents();
         this.setResizable(false);
@@ -30,13 +35,14 @@ public class UsersOperationsUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Title3 = new javax.swing.JLabel();
-        AddUserTF = new javax.swing.JTextField();
+        AddUserNameTF = new javax.swing.JTextField();
         RemoveUserTF = new javax.swing.JTextField();
         Lab1 = new javax.swing.JLabel();
         Lab2 = new javax.swing.JLabel();
         AddUserButt = new javax.swing.JButton();
         RemoveUserButt = new javax.swing.JButton();
         BackToSOButt = new javax.swing.JButton();
+        AddUserPrioTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,22 +55,27 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         Title3.setForeground(new java.awt.Color(255, 255, 255));
         Title3.setText("Operaciones con usuarios");
         getContentPane().add(Title3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 50));
-        getContentPane().add(AddUserTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 560, 50));
+        getContentPane().add(AddUserNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 370, 50));
         getContentPane().add(RemoveUserTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 560, 50));
 
         Lab1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         Lab1.setForeground(new java.awt.Color(255, 255, 255));
-        Lab1.setText("Especificar el nombre del usuario y el cargo que este emplea");
+        Lab1.setText("Especificar el nombre del usuario seguido de la prioridad de este:");
         getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 540, 40));
 
         Lab2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         Lab2.setForeground(new java.awt.Color(255, 255, 255));
-        Lab2.setText("Especificar el nombre del usuario");
+        Lab2.setText("Especificar el nombre del usuario:");
         getContentPane().add(Lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 420, 40));
 
         AddUserButt.setBackground(new java.awt.Color(102, 255, 102));
         AddUserButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         AddUserButt.setText("Añadir usuario");
+        AddUserButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddUserButtActionPerformed(evt);
+            }
+        });
         getContentPane().add(AddUserButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 210, 50));
 
         RemoveUserButt.setBackground(new java.awt.Color(255, 102, 102));
@@ -82,6 +93,13 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         });
         getContentPane().add(BackToSOButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, 150, 50));
 
+        AddUserPrioTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddUserPrioTFActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AddUserPrioTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 140, 50));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs/BackgroundUsersOperations.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 500));
 
@@ -94,6 +112,15 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         ventanaso.setVisible(true);
         
     }//GEN-LAST:event_BackToSOButtActionPerformed
+
+    private void AddUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserButtActionPerformed
+        String nombre = AddUserNameTF.getText();
+        String prioridad = getPrioridad().getText();
+    }//GEN-LAST:event_AddUserButtActionPerformed
+
+    private void AddUserPrioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserPrioTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddUserPrioTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,7 +159,8 @@ public class UsersOperationsUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUserButt;
-    private javax.swing.JTextField AddUserTF;
+    private javax.swing.JTextField AddUserNameTF;
+    private javax.swing.JTextField AddUserPrioTF;
     private javax.swing.JButton BackToSOButt;
     private javax.swing.JLabel Lab1;
     private javax.swing.JLabel Lab2;
