@@ -3,7 +3,7 @@ package Tree_clases;
 
 /**
  *
- * @author andre
+ * @author dell
  */
 public class Nodo_list {
     

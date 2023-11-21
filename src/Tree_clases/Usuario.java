@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  *
- * @author andre
+ * @author dell
  */
 public class Usuario {
     

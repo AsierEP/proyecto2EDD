@@ -4,6 +4,11 @@
  */
 package UIs;
 
+import CSV.CSV;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -17,6 +22,19 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     
     public javax.swing.JTextField getPrioridad(){
         return AddUserPrioTF;
+    }
+    
+    private String path;
+    
+    public String getPath(){
+        return path;
+    }
+    
+    public void setPath(String path){
+        this.path = path;
+    }
+    public boolean VerifyChoice(String numericchoice){
+        return numericchoice.matches("[1-3]");
     }
     public UsersOperationsUI() {
         initComponents();
@@ -81,6 +99,11 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         RemoveUserButt.setBackground(new java.awt.Color(255, 102, 102));
         RemoveUserButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         RemoveUserButt.setText("Eliminar usuario");
+        RemoveUserButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveUserButtActionPerformed(evt);
+            }
+        });
         getContentPane().add(RemoveUserButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 210, 50));
 
         BackToSOButt.setBackground(new java.awt.Color(102, 255, 255));
@@ -114,13 +137,50 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BackToSOButtActionPerformed
 
     private void AddUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserButtActionPerformed
-        String nombre = AddUserNameTF.getText();
-        String prioridad = getPrioridad().getText();
+          CSV csv_methods = new CSV();
+        if (AddUserNameTF.getText().equalsIgnoreCase("") || csv_methods.getString(getPath()).equals(AddUserNameTF.getText())){
+           if (AddUserNameTF.getText().equalsIgnoreCase("")){
+           JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre válido");
+            AddUserNameTF.setText("");
+            AddUserPrioTF.setText("");
+           }else if (csv_methods.getString(getPath()).equals(AddUserNameTF.getText())){
+               JOptionPane.showMessageDialog(null, "El usuario ya existe, por favor introduzca otro usuario");
+               AddUserNameTF.setText("");
+               AddUserPrioTF.setText("");
+           }
+        }else{
+        String nombre=AddUserNameTF.getText();
+        String Priority = AddUserPrioTF.getText();
+        String numericchoice;
+        if(VerifyChoice(AddUserPrioTF.getText().trim()) == false){
+            JOptionPane.showMessageDialog(null, "Los datos no son correctos, por favor introduzca una prioridad válida");
+            AddUserNameTF.setText("");
+            AddUserPrioTF.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "STRING OBTENIDO");
+            JOptionPane.showMessageDialog(null, "El usuario se añadió exitosamente");
+            JOptionPane.showMessageDialog(null, "EL CSV SE HA MODIFICADO");
+            AddUserNameTF.setText("");
+            AddUserPrioTF.setText("");
+        }
+        numericchoice = AddUserPrioTF.getText();
+        CSV C = new CSV();
+        C.ModifyCSV(getPath(),csv_methods.getString(getPath()), nombre,numericchoice);
+
+        }
     }//GEN-LAST:event_AddUserButtActionPerformed
 
     private void AddUserPrioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserPrioTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AddUserPrioTFActionPerformed
+
+    private void RemoveUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveUserButtActionPerformed
+        String nombre = RemoveUserTF.getText();
+        JOptionPane.showMessageDialog(null, "EL USUARIO SE ELIMINÓ EXITOSAMENTE");
+        CSV csv_methods = new CSV();
+        csv_methods.DeleteCSV(getPath(), csv_methods.DeleteLine(getPath(), nombre));
+        JOptionPane.showMessageDialog(null, "EL CSV SE HA ACTUALIZADO");
+    }//GEN-LAST:event_RemoveUserButtActionPerformed
 
     /**
      * @param args the command line arguments
