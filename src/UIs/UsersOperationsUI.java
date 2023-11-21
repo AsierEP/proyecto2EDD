@@ -5,6 +5,8 @@
 package UIs;
 
 import CSV.CSV;
+import Tree_clases.HashTable;
+import Tree_clases.Usuario;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
@@ -15,6 +17,8 @@ import javax.swing.JOptionPane;
  * @author Dell
  */
 public class UsersOperationsUI extends javax.swing.JFrame {
+    public HashTable h;
+    CSV csv_methods ;
 
     /**
      * Creates new form UsersOperationsUI
@@ -40,6 +44,10 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+         this.csv_methods = new CSV();
+
+        this.h = csv_methods.getHashTable(getPath());
+
     }
 
     /**
@@ -137,13 +145,13 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BackToSOButtActionPerformed
 
     private void AddUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserButtActionPerformed
-          CSV csv_methods = new CSV();
-        if (AddUserNameTF.getText().equalsIgnoreCase("") || csv_methods.getString(getPath()).equals(AddUserNameTF.getText())){
+          Usuario existe = h.search(AddUserNameTF.getText());
+        if (AddUserNameTF.getText().equalsIgnoreCase("") || existe != null){
            if (AddUserNameTF.getText().equalsIgnoreCase("")){
            JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre válido");
             AddUserNameTF.setText("");
             AddUserPrioTF.setText("");
-           }else if (csv_methods.getString(getPath()).equals(AddUserNameTF.getText())){
+           }else if (existe != null){
                JOptionPane.showMessageDialog(null, "El usuario ya existe, por favor introduzca otro usuario");
                AddUserNameTF.setText("");
                AddUserPrioTF.setText("");
@@ -164,6 +172,8 @@ public class UsersOperationsUI extends javax.swing.JFrame {
             AddUserPrioTF.setText("");
         }
         numericchoice = AddUserPrioTF.getText();
+        Usuario user = new Usuario(nombre, Integer.parseInt(Priority));
+        h.Add(user);
         CSV C = new CSV();
         C.ModifyCSV(getPath(),csv_methods.getString(getPath()), nombre,numericchoice);
 
@@ -175,6 +185,25 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AddUserPrioTFActionPerformed
 
     private void RemoveUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveUserButtActionPerformed
+        Usuario existe = h.search(AddUserNameTF.getText());
+        if (AddUserNameTF.getText().equalsIgnoreCase("") || existe != null){
+           if (AddUserNameTF.getText().equalsIgnoreCase("")){
+           JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre válido");
+            AddUserNameTF.setText("");
+            AddUserPrioTF.setText("");
+           }else if (existe != null){
+               JOptionPane.showMessageDialog(null, "El usuario se eliminó exitosamente");
+               AddUserNameTF.setText("");
+               AddUserPrioTF.setText("");
+               //h.delete(user);
+               CSV C = new CSV();
+               //C.ModifyCSV(getPath(),csv_methods.getString(getPath()), nombre,numericchoice);
+           }
+        }
+    
+               
+               
+               
         String nombre = RemoveUserTF.getText();
         JOptionPane.showMessageDialog(null, "EL USUARIO SE ELIMINÓ EXITOSAMENTE");
         CSV csv_methods = new CSV();

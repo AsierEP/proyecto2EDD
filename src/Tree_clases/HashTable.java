@@ -1,6 +1,8 @@
 
 package Tree_clases;
 
+import CSV.CSV;
+
 /**
  *
  * @author dell
@@ -39,32 +41,50 @@ public class HashTable {
         this.table = table;
     }
     
-    private int hashFunction(Integer user){
+    private int hashFunction(String user){
         int hashCode = user.hashCode();
         return Math.abs(hashCode) % table.length;
     }
     
-//     public void Add(Usuario user){
-//        int usuario = user.getID();
-//        int index = hashFunction(usuario);
-//        table[index].AddAtIndex(usuario,index);
-//    }
-//     
-//    public void delete(Usuario user){
-//        int usuario = user.getID();
-//        int index = hashFunction(usuario);
-//        table[index].DeleteAtIndex(index);
-//    }
-//    
-//    public Nodo_list search(Usuario user){
-//        int usuario = user.getID();
-//        int index = hashFunction(usuario);
-//        return table[index].searchByIndex(index);
-//    }
+    public int UserToInt(String user){
+        int hashint = 0;
+        for (int i = 0; i < user.length(); i++) {
+            hashint += (int) user.charAt(i)*i;
+            
+        }
+        return hashint % table.length;
+    }
+    
+     public void Add(Usuario user){
+        String usuario = user.getNombre();
+        int index = UserToInt(usuario);
+        table[index].AddStart(user.getNombre(),user.getTipo());
+    }
+     
+    public void delete(Usuario user){
+        String usuario = user.getNombre();
+        int index = UserToInt(usuario);
+        table[index].searchUserForDelete(user.getNombre());
+    }
+    
+    public Usuario search(String usuario){
+        
+        int index = UserToInt(usuario);
+        return table[index].searchUser(usuario);
+    }
     
     public void print(){
         for (int i = 0; i < getSize(); i++) {
             table[i].print();
+        }
+    }
+    
+    public void guardar(CSV csv,String path){
+        String data = "";
+        for (int i = 0; i < this.size; i++) {
+            if (this.table[i]!= null){
+                 //data = this.table[i].imprimir(path, csv, data); 
+            }
         }
     }
     

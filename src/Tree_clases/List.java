@@ -9,7 +9,7 @@ package Tree_clases;
  */
 public class List implements Methods_List{
     
-    private Nodo_list pFirst;
+    private Usuario pFirst;
     private int size;
     
     /**
@@ -21,11 +21,11 @@ public class List implements Methods_List{
         this.size = 0; 
     }
 
-    public Nodo_list getpFirst() {
+    public Usuario getpFirst() {
         return pFirst;
     }
 
-    public void setpFirst(Nodo_list pFirst) {
+    public void setpFirst(Usuario pFirst) {
         this.pFirst = pFirst;
     }
 
@@ -43,8 +43,8 @@ public class List implements Methods_List{
     }
 
     @Override
-    public void AddStart(Object element){
-        Nodo_list nodo = new Nodo_list(element);
+    public void AddStart(String nombre, int prioridad){
+        Usuario nodo = new Usuario(nombre, prioridad);
         
         if(isEmpty()){
             setpFirst(nodo);
@@ -52,19 +52,20 @@ public class List implements Methods_List{
         else{
             nodo.setpNext(getpFirst());
             setpFirst(nodo);
+
         }
         size++;
     }
 
     @Override
-    public void AddEnd(Object element){
-        Nodo_list nodo = new Nodo_list(element);
+    public void AddEnd(String nombre, int prioridad){
+        Usuario nodo = new Usuario(nombre, prioridad);
         
         if(isEmpty()){
             setpFirst(nodo);
         }
         else{
-            Nodo_list pointer = getpFirst();
+            Usuario pointer = getpFirst();
             while(pointer.getpNext() != null){
                 pointer = pointer.getpNext();
             }
@@ -74,15 +75,15 @@ public class List implements Methods_List{
     }
     
     @Override
-    public void AddAtIndex(Object element, int index){
-        Nodo_list nodo = new Nodo_list(element);
+    public void AddAtIndex(String nombre, int prioridad, int index){
+        Usuario nodo = new Usuario(nombre, prioridad);
         
         if(isEmpty() || index == 0){
-            AddStart(element);
+            AddStart(nombre, prioridad);
         }
         else{
             if (index < getSize()) {
-                Nodo_list pointer = getpFirst();
+                Usuario pointer = getpFirst();
                 
                 int count = 0;
                 
@@ -91,14 +92,14 @@ public class List implements Methods_List{
                     count++;
                 }
                 
-                Nodo_list pAux = pointer.getpNext();
+                Usuario pAux = pointer.getpNext();
                 
                 nodo.setpNext(pAux);
                 pointer.setpNext(nodo);
                 size++;
             }
             else if (index == getSize()) {
-                AddEnd(element);
+                AddEnd(nombre, prioridad);
             }
             else{
                 System.out.println("Index inválido");
@@ -107,14 +108,14 @@ public class List implements Methods_List{
     }
 
     @Override
-    public Nodo_list DeleteStart(){
+    public Usuario DeleteStart(){
     
         if(isEmpty()){
             System.out.println("La Lista está vacía");
             return null;
         }
         else{
-            Nodo_list pointer = getpFirst();
+            Usuario pointer = getpFirst();
             setpFirst(pointer.getpNext());
             pointer.setpNext(null);
             size--;
@@ -123,18 +124,18 @@ public class List implements Methods_List{
     }
 
     @Override
-    public Nodo_list DeleteEnd(){
+    public Usuario DeleteEnd(){
         
         if(isEmpty()){
             System.out.println("La Lista está vacía");
             return null;
         }
         else{
-            Nodo_list pointer = getpFirst();
+            Usuario pointer = getpFirst();
             while(pointer.getpNext().getpNext() != null){
                 pointer = pointer.getpNext();
             }
-            Nodo_list pAux = pointer.getpNext();
+            Usuario pAux = pointer.getpNext();
             pointer.setpNext(null);
             size--;
             return pAux;
@@ -142,14 +143,14 @@ public class List implements Methods_List{
     }
     
     @Override
-    public Nodo_list DeleteAtIndex(int index){
+    public Usuario DeleteAtIndex(int index){
         
         if(isEmpty() || index == 0){
             return DeleteStart();
         }
         else{
             if (index < getSize()) {
-                Nodo_list pointer = getpFirst();
+                Usuario pointer = getpFirst();
                 
                 int count = 0;
                 
@@ -158,7 +159,7 @@ public class List implements Methods_List{
                     count++;
                 }
                 
-                Nodo_list pAux = pointer.getpNext();
+                Usuario pAux = pointer.getpNext();
                 
                 pointer.setpNext(pAux.getpNext());
                 pAux.setpNext(null);
@@ -175,17 +176,17 @@ public class List implements Methods_List{
         }
         
     }
-
+    
     public void print(){
-        Nodo_list pointer = getpFirst();
+        Usuario pointer = getpFirst();
         while(pointer != null){
-            System.out.print(" [ " +  pointer.getElement() + " ] ");
+            System.out.print(" [ " +  pointer.getNombre()+ "," + pointer.getTipo() + " ] ");
             pointer = pointer.getpNext();
         }
     }
 
-    public Nodo_list searchByIndex(int index){
-        Nodo_list pAux=this.pFirst;
+    public Usuario searchByIndex(int index){
+        Usuario pAux=this.pFirst;
         int count = 0;
         
         while (pAux!=null && count!=index){
@@ -199,11 +200,43 @@ public class List implements Methods_List{
         }
         
     }
+    
+    public Usuario searchUser(String user){
+        Usuario pAux = pFirst;
+        if(isEmpty() == false){
+            while(pAux != null && !pAux.getNombre().equals(user)){
+                pAux = pAux.getpNext();
+            }
+            if(pAux == null){
+                return null;
+            }else{
+                return pAux;
+            }
+        }else{
+            return null;
+        }        
+    }
+    
+    public void searchUserForDelete(String user){
+        Usuario pAux = pFirst;
+        if(isEmpty() == false){
+            if(pAux.getNombre() == pFirst.getNombre()){
+                this.pFirst = pFirst.getpNext();
+            }else{
+                while(pAux.getpNext() != null && !pAux.getpNext().getNombre().equals(user)){
+                    pAux = pAux.getpNext();
+                }
+                if(pAux.getpNext() != null){
+                    pAux.setpNext(pAux.getpNext().getpNext());
+                }
+            }
+        }      
+    }
 
     public Object returnIndexData(int index){
-        Nodo_list returnedNodo=this.searchByIndex(index);
+        Usuario returnedNodo=this.searchByIndex(index);
         if (returnedNodo!=null){
-            return returnedNodo.getElement();
+            return returnedNodo.getNombre();
         }else{
             return null;
         }

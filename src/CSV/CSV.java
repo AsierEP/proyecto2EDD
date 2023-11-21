@@ -4,6 +4,7 @@
  */
 package CSV;
 
+import Tree_clases.HashTable;
 import Tree_clases.List;
 import Tree_clases.Usuario;
 import java.io.BufferedReader;
@@ -43,8 +44,8 @@ public class CSV {
               }else if (fields[1].equalsIgnoreCase("prioridad_alta")){
                   x=1;
               }
-              Usuario usuario = new Usuario(fields[0],x);
-              users.AddEnd(usuario);
+             
+              users.AddStart(fields[0],x);
 
               line = br.readLine();
            }
@@ -58,6 +59,35 @@ public class CSV {
             return users;
         }
         
+        public HashTable getHashTable(String path){
+            HashTable h= new HashTable(300);
+            String str = "";
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new FileReader(path));
+                
+                String line = br.readLine();
+                while(line != null){
+                    str = line;
+                    String[] u = str.split(",");
+                    int num = 0;
+                    if(u[1].equals("prioridad_alta")){
+                        num = 1;
+                    }else if(u[1].equals("prioridad_media")){
+                        num = 2;
+                    }else if(u[1].equals("prioridad_baja")){
+                        num = 3;
+                    }
+                    Usuario user = new Usuario(u[0],num);
+                    h.Add(user);
+                    line = br.readLine();
+                }
+                br.close();
+            }catch (Exception e) {
+                e.getStackTrace();
+            }
+            return h;            
+        }
         public String getString(String path){
             String str = "";
             BufferedReader br = null;
@@ -79,7 +109,7 @@ public class CSV {
         public void ModifyCSV(String path, String data, String nombre, String tipo){
             try {
             PrintWriter output = new PrintWriter(path);
-            data = data + nombre + "," + tipo;
+            data = data + nombre + "," + tipo + "\n";
             output.write(data); 
             output.close(); 
         } 

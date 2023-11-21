@@ -11,12 +11,13 @@ public class Usuario {
     private String nombre;
     private int tipo;
     private List Documentos;
+    private Usuario pNext;
 
     public Usuario(String nombre, int tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -40,4 +41,13 @@ public class Usuario {
     public void setDocumentos(List Documentos) {
         this.Documentos = Documentos;
     }
+
+    public Usuario getpNext() {
+        return pNext;
+    }
+
+    public void setpNext(Usuario pNext) {
+        this.pNext = pNext;
+    }
+    
 }

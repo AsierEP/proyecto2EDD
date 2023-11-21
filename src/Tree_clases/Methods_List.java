@@ -7,11 +7,11 @@ package Tree_clases;
  */
 public interface Methods_List {
     
-    public void AddStart(Object element);
+    public void AddStart(String nombre, int prioridad);
 
-    public void AddEnd(Object element);
+    public void AddEnd(String nombre, int prioridad);
 
-    public void AddAtIndex(Object element, int index);
+    public void AddAtIndex(String nombre, int prioridad, int index);
 
     public Object DeleteStart();
 
