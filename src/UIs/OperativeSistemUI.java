@@ -38,9 +38,6 @@ public class OperativeSistemUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TAColaSecuencia = new javax.swing.JTextArea();
         Lab3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TAColaArbol = new javax.swing.JTextArea();
-        Lab4 = new javax.swing.JLabel();
         ArchivesOpButt = new javax.swing.JButton();
         LiberarImpresoraButt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -54,7 +51,7 @@ public class OperativeSistemUI extends javax.swing.JFrame {
         Title2.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         Title2.setForeground(new java.awt.Color(255, 255, 255));
         Title2.setText("Sistema Operativo");
-        getContentPane().add(Title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 250, 40));
+        getContentPane().add(Title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 250, 40));
 
         UsersOpButt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         UsersOpButt.setText("Operaciones con usuarios");
@@ -65,39 +62,31 @@ public class OperativeSistemUI extends javax.swing.JFrame {
         });
         getContentPane().add(UsersOpButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 220, 50));
 
+        TAUsers.setEditable(false);
         TAUsers.setColumns(20);
         TAUsers.setRows(5);
         jScrollPane1.setViewportView(TAUsers);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 290, 400));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 290, 400));
 
         Lab1.setForeground(new java.awt.Color(255, 255, 255));
         Lab1.setText("Nombre de usuario, archivos, enviados o no");
-        getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 280, -1));
+        getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 280, -1));
 
         Lab2.setForeground(new java.awt.Color(255, 255, 255));
         Lab2.setText("a la cola de impresión:");
-        getContentPane().add(Lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 220, -1));
+        getContentPane().add(Lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 220, -1));
 
+        TAColaSecuencia.setEditable(false);
         TAColaSecuencia.setColumns(20);
         TAColaSecuencia.setRows(5);
         jScrollPane2.setViewportView(TAColaSecuencia);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 300, 400));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 300, 400));
 
         Lab3.setForeground(new java.awt.Color(255, 255, 255));
         Lab3.setText("Cola de impresión como simple secuencia:");
-        getContentPane().add(Lab3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 260, 30));
-
-        TAColaArbol.setColumns(20);
-        TAColaArbol.setRows(5);
-        jScrollPane3.setViewportView(TAColaArbol);
-
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, 290, 400));
-
-        Lab4.setForeground(new java.awt.Color(255, 255, 255));
-        Lab4.setText("Cola de impresión como representación de árbol:");
-        getContentPane().add(Lab4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 290, -1));
+        getContentPane().add(Lab3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 260, 30));
 
         ArchivesOpButt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         ArchivesOpButt.setText("Operaciones con archivos");
@@ -183,9 +172,7 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     private javax.swing.JLabel Lab1;
     private javax.swing.JLabel Lab2;
     private javax.swing.JLabel Lab3;
-    private javax.swing.JLabel Lab4;
     private javax.swing.JButton LiberarImpresoraButt;
-    private javax.swing.JTextArea TAColaArbol;
     private javax.swing.JTextArea TAColaSecuencia;
     private javax.swing.JTextArea TAUsers;
     private javax.swing.JLabel Title2;
@@ -194,6 +181,5 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

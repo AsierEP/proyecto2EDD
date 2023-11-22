@@ -4,6 +4,7 @@
  */
 package UIs;
 
+import java.awt.Color;
 import CSV.CSV;
 import Tree_clases.HashTable;
 import Tree_clases.Usuario;
@@ -19,6 +20,8 @@ import javax.swing.JOptionPane;
 public class UsersOperationsUI extends javax.swing.JFrame {
     public HashTable h;
     CSV csv_methods ;
+    String AddUserNombreEj = "Ej: Juan1789";
+    String AddUserPrioEj = "Ej: 1";
 
     /**
      * Creates new form UsersOperationsUI
@@ -81,13 +84,21 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         Title3.setForeground(new java.awt.Color(255, 255, 255));
         Title3.setText("Operaciones con usuarios");
         getContentPane().add(Title3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 50));
+
+        AddUserNameTF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        AddUserNameTF.setForeground(new java.awt.Color(153, 153, 153));
+        AddUserNameTF.setText("Ej: Juan1789");
         getContentPane().add(AddUserNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 370, 50));
+
+        RemoveUserTF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        RemoveUserTF.setForeground(new java.awt.Color(153, 153, 153));
+        RemoveUserTF.setText("Ej: Simon287");
         getContentPane().add(RemoveUserTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 560, 50));
 
         Lab1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         Lab1.setForeground(new java.awt.Color(255, 255, 255));
-        Lab1.setText("Especificar el nombre del usuario seguido de la prioridad de este:");
-        getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 540, 40));
+        Lab1.setText("Especificar el nombre del usuario seguido de la prioridad de este, (1=alta, 2=media, 3=baja):");
+        getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 750, 40));
 
         Lab2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         Lab2.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,6 +135,9 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         });
         getContentPane().add(BackToSOButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, 150, 50));
 
+        AddUserPrioTF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        AddUserPrioTF.setForeground(new java.awt.Color(153, 153, 153));
+        AddUserPrioTF.setText("Ej: 1");
         AddUserPrioTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddUserPrioTFActionPerformed(evt);
@@ -145,7 +159,11 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BackToSOButtActionPerformed
 
     private void AddUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserButtActionPerformed
-          Usuario existe = h.search(AddUserNameTF.getText());
+        AddUserNameTF.setForeground(new java.awt.Color(153, 153, 153));
+        AddUserNameTF.setText(AddUserNombreEj);
+        AddUserPrioTF.setForeground(new java.awt.Color(153, 153, 153));
+        AddUserPrioTF.setText(AddUserPrioEj);
+        Usuario existe = h.search(AddUserNameTF.getText());
         if (AddUserNameTF.getText().equalsIgnoreCase("") || existe != null){
            if (AddUserNameTF.getText().equalsIgnoreCase("")){
            JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre válido");

@@ -38,7 +38,7 @@ public class BinaryHeap {
                     return nodo;
                 }
                 default -> {
-                    nodo.setTiempo(nodo.getTiempo()/1);
+                    nodo.setTiempo(nodo.getTiempo()/2);
                     return nodo;
                 }
             }

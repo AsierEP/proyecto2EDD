@@ -83,7 +83,7 @@ public class HashTable {
         String data = "";
         for (int i = 0; i < this.size; i++) {
             if (this.table[i]!= null){
-                 //data = this.table[i].imprimir(path, csv, data); 
+//                 data = this.table[i].imprimir(path, csv, data); 
             }
         }
     }

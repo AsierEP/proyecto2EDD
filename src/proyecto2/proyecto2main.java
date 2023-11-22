@@ -19,8 +19,6 @@ public class proyecto2main {
     public static void main(String[] args) {
         LoadArchiveUI ventanaload = new LoadArchiveUI();
         ventanaload.setVisible(true);
-        TimerUI ventanatimer = new TimerUI();
-        ventanatimer.setVisible(true);
     }
     
 }
