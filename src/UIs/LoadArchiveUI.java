@@ -5,6 +5,7 @@
 package UIs;
 
 import CSV.CSV;
+import Tree_clases.HashTable;
 import Tree_clases.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class LoadArchiveUI extends javax.swing.JFrame {
     }
     
     private String path;
-    private List usuarios;
+    public static HashTable usuarios;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,8 +88,10 @@ public class LoadArchiveUI extends javax.swing.JFrame {
             String Ruta = jFileChooser.getSelectedFile().getPath();
             JOptionPane.showMessageDialog(null, "El archivo se cargó correctamente");
             CSV c=new CSV();
-            OperativeSistemUI ventana = new OperativeSistemUI();
-            ventana.setUsuarios(c.leer(Ruta));
+            usuarios = c.leer(Ruta);
+            OperativeSistemUI ventana = new OperativeSistemUI(usuarios);
+
+            ventana.setUsuarios(usuarios);
             ventana.setVisible(true);
             this.dispose();
         }else{
@@ -102,7 +105,7 @@ public class LoadArchiveUI extends javax.swing.JFrame {
         
         //Visualización de la segunda ventana
         this.setVisible(false);
-        OperativeSistemUI ventanaoperative = new OperativeSistemUI();
+        OperativeSistemUI ventanaoperative = new OperativeSistemUI(usuarios);
         ventanaoperative.setVisible(true);
     }//GEN-LAST:event_LoadArchiveButtActionPerformed
 
@@ -157,11 +160,11 @@ public class LoadArchiveUI extends javax.swing.JFrame {
         this.path = path;
     }
 
-    public List getUsuarios() {
+    public HashTable getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List usuarios) {
+    public void setUsuarios(HashTable usuarios) {
         this.usuarios = usuarios;
     }
 }

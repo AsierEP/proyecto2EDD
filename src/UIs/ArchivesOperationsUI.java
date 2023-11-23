@@ -4,6 +4,7 @@
  */
 package UIs;
 
+import Tree_clases.HashTable;
 import Tree_clases.List;
 import Tree_clases.Node_Document;
 import Tree_clases.Nodo_list;
@@ -22,11 +23,12 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
     private Timer myTimer;
     public int segundos = 0;
     private String path;
-    private List usuarios;
+    public static HashTable usuarios;
     /**
      * Creates new form ArchivesOperationsUI
      */
-    public ArchivesOperationsUI() {
+    public ArchivesOperationsUI(HashTable h) {
+        this.usuarios = h;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -54,11 +56,11 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         this.path = path;
     }
 
-    public List getUsuarios() {
+    public HashTable getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List usuarios) {
+    public void setUsuarios(HashTable usuarios) {
         this.usuarios = usuarios;
     }
     
@@ -250,15 +252,13 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         String tipo = AddArchiveTypeTF.getText();
         String tamaño = AddArchiveSizeTF.getText();
         int size=Integer.parseInt(tamaño);
-        Usuario pAux = getUsuarios().getpFirst();
+        Usuario pAux = usuarios.search(user);
         Object_Document document = new Object_Document(nombre,tipo,size);
-        while (pAux!=null){
-            if (pAux.getNombre().equalsIgnoreCase(user)) {
-                //pAux.getDocumentos().AddEnd(document);
-                break;
-            }
-            pAux=pAux.getpNext();
+        
+        if (pAux != null){
+            pAux.getDocumentos().AddDocumentAtEnd(nombre,tipo,size,0,false);
         }
+        
         JOptionPane.showMessageDialog(null, "Documento añadido exitosamente");
         
     }//GEN-LAST:event_AddArchiveButtActionPerformed
@@ -266,19 +266,11 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
     private void RemoveArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveArchiveButtActionPerformed
         String user = RemoveArchiveUNameTF.getText();
         String nombre = RemoveArchiveNameTF.getText();
-        Usuario pAux = getUsuarios().getpFirst();
-        int cont = 0;
+        Usuario pAux = usuarios.search(user);
         while (pAux!=null){
             if (pAux.getNombre().equalsIgnoreCase(user)){
-                Usuario pAux2 = (pAux.getDocumentos().getpFirst());
-                while(pAux2!=null){
-                    if(pAux2.getNombre().equalsIgnoreCase(nombre)){
-                        break;
-                    }
-                    cont++;
-                    pAux2=pAux2.getpNext();
-                }
-                pAux.getDocumentos().DeleteAtIndex(cont);
+                pAux.getDocumentos().DeleteDocument(nombre);
+                break;
             }
             pAux=pAux.getpNext();
         }
@@ -290,7 +282,7 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
 
     private void BackToSOButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToSOButtActionPerformed
         this.setVisible(false);
-        OperativeSistemUI ventanaso = new OperativeSistemUI();
+        OperativeSistemUI ventanaso = new OperativeSistemUI(usuarios);
         ventanaso.setVisible(true);
     }//GEN-LAST:event_BackToSOButtActionPerformed
 
@@ -383,7 +375,7 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ArchivesOperationsUI().setVisible(true);
+                new ArchivesOperationsUI(usuarios).setVisible(true);
             }
         });
     }

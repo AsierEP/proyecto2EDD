@@ -11,6 +11,7 @@ import CSV.CSV;
  */
 public class List implements Methods_List{
     
+    private Node_Document pFirstD;
     private Usuario pFirst;
     private int size;
     
@@ -19,8 +20,17 @@ public class List implements Methods_List{
      * 
      */
     public List(){
+        this.pFirstD = null;
         this.pFirst = null;
         this.size = 0; 
+    }
+
+    public Node_Document getpFirstD() {
+        return pFirstD;
+    }
+
+    public void setpFirstD(Node_Document pFirstD) {
+        this.pFirstD = pFirstD;
     }
 
     public Usuario getpFirst() {
@@ -38,6 +48,8 @@ public class List implements Methods_List{
     public void setSize(int size) {
         this.size = size;
     }
+
+
     
     @Override
     public boolean isEmpty(){
@@ -244,7 +256,63 @@ public class List implements Methods_List{
         }
     }
     
-//    public String imprimir(String path, CSV csv, String data){
-//        
-//    }
+    public void imprimir(String path, CSV csv, String data){
+        Usuario pAux = pFirst;
+        while(pAux != null){
+//            csv.ModifyCSV(path, data, pAux.getNombre(), String.valueOf(pAux.getTipo()));
+            pAux = pAux.getpNext();
+        }
+    } 
+    
+    public String imprimirUsuarios (String s){
+        Usuario pAux = pFirst;
+        while(pAux != null){
+            s += pAux.getNombre() + "\n";
+            s = imprimirDocumentos(s);
+            pAux = pAux.getpNext();
+        }return s;
+    } 
+    
+    public String imprimirDocumentos (String d){
+       
+        Node_Document pAux = pFirstD;
+        while(pAux != null){
+            d += pAux.getNombre() + "\n";
+            pAux = pAux.getpNext();
+        }
+        return d;
+    }
+    
+    public void AddDocumentAtEnd(String nombre, String tipo, int size, int tiempo, boolean prio){
+        Node_Document nodo = new Node_Document(nombre, tipo, size, tiempo, prio);
+        if(pFirstD == null){
+            setpFirstD(nodo);
+        }
+        else{
+            Node_Document pointer = getpFirstD();
+            while(pointer.getpNext() != null){
+                pointer = pointer.getpNext();
+            }
+            pointer.setpNext(nodo);
+        }
+        size++;
+    }
+    
+    public void DeleteDocument (String nombre){
+        Node_Document pAux = pFirstD;
+        if(isEmpty() == true){
+            System.out.println("La lista está vacía");
+        }else if(pAux.getNombre() == pFirstD.getNombre()){
+            pFirstD = pFirstD.getpNext();
+        }else{
+            while(pAux.getpNext() != null){
+                if(pAux.getpNext().getNombre().equals(nombre)){
+                    break;
+                }else{
+                    pAux = pAux.getpNext();
+                }
+            }
+        }
+    }
 }
+

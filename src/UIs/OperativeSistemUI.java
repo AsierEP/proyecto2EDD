@@ -4,6 +4,7 @@
  */
 package UIs;
 
+import Tree_clases.HashTable;
 import Tree_clases.List;
 
 /**
@@ -15,14 +16,18 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     /**
      * Creates new form OperativeSistemUI
      */
-    public OperativeSistemUI() {
+        private String path;
+    private static HashTable usuarios;
+    
+    public OperativeSistemUI(HashTable h) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        usuarios = h;
+        TAUsers.setText(usuarios.RecorrerPrint());
     }
     
-    private String path;
-    private List usuarios;
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,7 +125,7 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     private void UsersOpButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsersOpButtActionPerformed
         // Visualización de UsersOperations
         this.setVisible(false);
-        UsersOperationsUI ventanausersop = new UsersOperationsUI();
+        UsersOperationsUI ventanausersop = new UsersOperationsUI(usuarios);
         ventanausersop.setVisible(true);
         
         
@@ -129,7 +134,7 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     private void ArchivesOpButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArchivesOpButtActionPerformed
         // Visualización de ArchivesOperations
         this.setVisible(false);
-        ArchivesOperationsUI ventanaarchivesop = new ArchivesOperationsUI();
+        ArchivesOperationsUI ventanaarchivesop = new ArchivesOperationsUI(usuarios);
         ventanaarchivesop.setVisible(true);
     }//GEN-LAST:event_ArchivesOpButtActionPerformed
 
@@ -167,7 +172,7 @@ public class OperativeSistemUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OperativeSistemUI().setVisible(true);
+                new OperativeSistemUI(usuarios).setVisible(true);
             }
         });
     }
@@ -195,11 +200,11 @@ public class OperativeSistemUI extends javax.swing.JFrame {
         this.path = path;
     }
 
-    public List getUsuarios() {
+    public HashTable getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List usuarios) {
+    public void setUsuarios(HashTable usuarios) {
         this.usuarios = usuarios;
     }
 }

@@ -80,14 +80,21 @@ public class HashTable {
     }
     
     public void guardar(CSV csv,String path){
-        String data = "";
         for (int i = 0; i < this.size; i++) {
             if (this.table[i]!= null){
-//                 data = this.table[i].imprimir(path, csv, data); 
+                this.table[i].imprimir(path, csv, ""); 
             }
         }
     }
     
     
+    public String RecorrerPrint(){
+        String u = "";
+        for (int i = 0; i < table.length; i++) {
+            if(table[i]!= null){
+                u = table[i].imprimirUsuarios(u);
+            }
+        }return u;
+    }
     
 }

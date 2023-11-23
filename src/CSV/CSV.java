@@ -26,9 +26,9 @@ public class CSV {
         return path;
     }
 
-        public List leer(String path){
+        public HashTable leer(String path){
             BufferedReader br = null;
-            List users = new List();
+            HashTable users = new HashTable(100);
       
         try {
 
@@ -44,8 +44,9 @@ public class CSV {
               }else if (fields[1].equalsIgnoreCase("prioridad_alta")){
                   x=1;
               }
-             
-              users.AddStart(fields[0],x);
+               Usuario user = new Usuario(fields[0], x);
+              users.Add(user);
+               System.out.println(user.getNombre());
 
               line = br.readLine();
            }
@@ -106,10 +107,21 @@ public class CSV {
             return str;
         }
         
-        public void ModifyCSV(String path, String data, String nombre, String tipo){
+//        public void ModifyCSV(String path, String data, String nombre, String tipo){
+//            try {
+//            PrintWriter output = new PrintWriter(path);
+//            data = data + nombre + "," + tipo + "\n";
+//            output.write(data); 
+//            output.close(); 
+//        } 
+//  
+//        catch (Exception e) { 
+//            e.getStackTrace();
+//        } 
+//    }
+    public void ModifyCSV(String path, String data){
             try {
             PrintWriter output = new PrintWriter(path);
-            data = data + nombre + "," + tipo + "\n";
             output.write(data); 
             output.close(); 
         } 
@@ -135,7 +147,6 @@ public class CSV {
            br.close();
            } catch (Exception e) {
                e.getStackTrace();
-               JOptionPane.showMessageDialog(null, "LA LÍNEA SE HA BORRADO");
           }
        return str;
     }

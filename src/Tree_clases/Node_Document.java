@@ -17,6 +17,8 @@ public class Node_Document {
     private int tiempo;
     private boolean prio;
     private Node_Document leftSon,rightSon;
+    private Node_Document pNext;
+    private boolean sent;
     
 
     public Node_Document(String nombre, String tipo, int size, int tiempo, boolean prio) {
@@ -27,38 +29,8 @@ public class Node_Document {
         this.prio = prio;
         this.leftSon = null;
         this.rightSon = null;
-    }
-
-    public Node_Document getLeftSon() {
-        return leftSon;
-    }
-
-    public void setLeftSon(Node_Document leftSon) {
-        this.leftSon = leftSon;
-    }
-
-    public Node_Document getRightSon() {
-        return rightSon;
-    }
-
-    public void setRightSon(Node_Document rightSon) {
-        this.rightSon = rightSon;
-    }
-
-    public int getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(int tiempo) {
-        this.tiempo = tiempo;
-    }    
-
-    public boolean isPrio() {
-        return prio;
-    }
-
-    public void setPrio(boolean prio) {
-        this.prio = prio;
+        this.pNext = null;
+        this.sent = false;
     }
 
     public String getNombre() {
@@ -83,6 +55,54 @@ public class Node_Document {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public boolean isPrio() {
+        return prio;
+    }
+
+    public void setPrio(boolean prio) {
+        this.prio = prio;
+    }
+
+    public Node_Document getLeftSon() {
+        return leftSon;
+    }
+
+    public void setLeftSon(Node_Document leftSon) {
+        this.leftSon = leftSon;
+    }
+
+    public Node_Document getRightSon() {
+        return rightSon;
+    }
+
+    public void setRightSon(Node_Document rightSon) {
+        this.rightSon = rightSon;
+    }
+
+    public Node_Document getpNext() {
+        return pNext;
+    }
+
+    public void setpNext(Node_Document pNext) {
+        this.pNext = pNext;
+    }
+
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
     
     public boolean hasOnlyRightSon(){

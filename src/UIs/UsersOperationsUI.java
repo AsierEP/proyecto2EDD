@@ -19,9 +19,8 @@ import javax.swing.JOptionPane;
  * @author Dell
  */
 public class UsersOperationsUI extends javax.swing.JFrame {
-    public HashTable h;
+    public static HashTable h;
     CSV csv_methods ;
-    String AddUserNombreEj = "Ej: Juan1789";
 
     /**
      * Creates new form UsersOperationsUI
@@ -43,12 +42,13 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     public boolean VerifyChoice(String numericchoice){
         return numericchoice.matches("[1-3]");
     }
-    public UsersOperationsUI() {
+    public UsersOperationsUI(HashTable h) {
         initComponents();
+        this.h = h;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.csv_methods = new CSV();
-        this.h = csv_methods.getHashTable(getPath());
+//        this.h = csv_methods.getHashTable(getPath());
     }
     
     public void Mouseclicked(MouseEvent e){
@@ -175,14 +175,13 @@ public class UsersOperationsUI extends javax.swing.JFrame {
 
     private void BackToSOButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToSOButtActionPerformed
         this.setVisible(false);
-        OperativeSistemUI ventanaso = new OperativeSistemUI();
+        OperativeSistemUI ventanaso = new OperativeSistemUI(h);
         ventanaso.setVisible(true);
         
     }//GEN-LAST:event_BackToSOButtActionPerformed
 
     private void AddUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserButtActionPerformed
         AddUserNameTF.setForeground(new java.awt.Color(153, 153, 153));
-        AddUserNameTF.setText(AddUserNombreEj);
         AddUserPrioTF.setForeground(new java.awt.Color(153, 153, 153));
         Usuario existe = h.search(AddUserNameTF.getText());
         if (AddUserNameTF.getText().equalsIgnoreCase("") || existe != null){
@@ -214,7 +213,7 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         Usuario user = new Usuario(nombre, Integer.parseInt(Priority));
         h.Add(user);
         CSV C = new CSV();
-        C.ModifyCSV(getPath(),csv_methods.getString(getPath()), nombre,numericchoice);
+//        C.ModifyCSV(getPath(),csv_methods.getString(getPath()), nombre,numericchoice);
 
         }
     }//GEN-LAST:event_AddUserButtActionPerformed
@@ -225,6 +224,7 @@ public class UsersOperationsUI extends javax.swing.JFrame {
 
     private void RemoveUserButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveUserButtActionPerformed
         Usuario existe = h.search(AddUserNameTF.getText());
+  
         if (AddUserNameTF.getText().equalsIgnoreCase("") || existe != null){
            if (AddUserNameTF.getText().equalsIgnoreCase("")){
            JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre válido");
@@ -236,7 +236,7 @@ public class UsersOperationsUI extends javax.swing.JFrame {
                AddUserPrioTF.setText("");
                //h.delete(user);
                CSV C = new CSV();
-               //C.ModifyCSV(getPath(),csv_methods.getString(getPath()), nombre,numericchoice);
+               h.guardar(C, path);
            }
         }
     
@@ -305,7 +305,7 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UsersOperationsUI().setVisible(true);
+                new UsersOperationsUI(h).setVisible(true);
             }
         });
     }

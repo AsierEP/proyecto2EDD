@@ -16,6 +16,7 @@ public class Usuario {
     public Usuario(String nombre, int tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
+        this.Documentos = new List();
     }
 
     public String getNombre() {
