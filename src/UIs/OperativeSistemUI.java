@@ -4,6 +4,8 @@
  */
 package UIs;
 
+import Tree_clases.List;
+
 /**
  *
  * @author Dell
@@ -18,6 +20,9 @@ public class OperativeSistemUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
+    
+    private String path;
+    private List usuarios;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,4 +187,19 @@ public class OperativeSistemUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public List getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List usuarios) {
+        this.usuarios = usuarios;
+    }
 }

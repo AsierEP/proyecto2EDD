@@ -4,6 +4,12 @@
  */
 package UIs;
 
+import CSV.CSV;
+import Tree_clases.List;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Dell
@@ -18,6 +24,9 @@ public class LoadArchiveUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
+    
+    private String path;
+    private List usuarios;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +76,27 @@ public class LoadArchiveUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoadArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadArchiveButtActionPerformed
+        //Cargar archivo
+        JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("CSV","csv");
+        jFileChooser.setFileFilter(filtrado);
         
+        int respuesta = jFileChooser.showOpenDialog(this);
+        
+        if (respuesta==JFileChooser.APPROVE_OPTION) {
+            String Ruta = jFileChooser.getSelectedFile().getPath();
+            JOptionPane.showMessageDialog(null, "El archivo se cargó correctamente");
+            CSV c=new CSV();
+            OperativeSistemUI ventana = new OperativeSistemUI();
+            ventana.setUsuarios(c.leer(Ruta));
+            ventana.setVisible(true);
+            this.dispose();
+        }else{
+            this.setVisible(false);
+            LoadArchiveUI ventanaload = new LoadArchiveUI();
+            ventanaload.setVisible(true);
+            JOptionPane.showMessageDialog(null, "El archivo no es del tipo correcto");
+        }
         
         
         
@@ -119,4 +148,20 @@ public class LoadArchiveUI extends javax.swing.JFrame {
     private javax.swing.JLabel Title1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public List getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List usuarios) {
+        this.usuarios = usuarios;
+    }
 }
