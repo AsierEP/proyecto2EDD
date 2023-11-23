@@ -6,6 +6,7 @@ package UIs;
 
 import Tree_clases.List;
 import Tree_clases.Node_Document;
+import Tree_clases.Nodo_list;
 import Tree_clases.Object_Document;
 import Tree_clases.Usuario;
 import java.awt.Color;
@@ -76,7 +77,7 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         Title4 = new javax.swing.JLabel();
         AddArchiveNameTF = new javax.swing.JTextField();
         Lab1 = new javax.swing.JLabel();
-        RemoveArchiveTF = new javax.swing.JTextField();
+        RemoveArchiveUNameTF = new javax.swing.JTextField();
         Lab2 = new javax.swing.JLabel();
         Lab3 = new javax.swing.JLabel();
         SendArchiveTF = new javax.swing.JTextField();
@@ -88,6 +89,7 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         AddArchiveSizeTF = new javax.swing.JTextField();
         AddArchiveTypeTF = new javax.swing.JTextField();
         AddDocuPriorityButt = new javax.swing.JToggleButton();
+        RemoveArchiveNameTF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,12 +112,13 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         Lab1.setText("Introducir el nombre del archivo, nombre del usuario, prioridad del archivo,  tamaño del archivo (KB) y tipo del archivo y si es prioritario o no:");
         getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 40));
 
-        RemoveArchiveTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        getContentPane().add(RemoveArchiveTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 580, 50));
+        RemoveArchiveUNameTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        RemoveArchiveUNameTF.setText("Ej: Juan1789");
+        getContentPane().add(RemoveArchiveUNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 310, 50));
 
         Lab2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Lab2.setForeground(new java.awt.Color(255, 255, 255));
-        Lab2.setText("Introducir el nombre del archivo, tenga en cuenta que este archivo no puede haber sido enviado a la cola de impresión:");
+        Lab2.setText("Introducir el nombre del usuario y el del archivo, tenga en cuenta que este archivo no puede haber sido enviado a la cola de impresión:");
         getContentPane().add(Lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 780, 30));
 
         Lab3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -188,6 +191,10 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         });
         getContentPane().add(AddDocuPriorityButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 70, 50));
 
+        RemoveArchiveNameTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        RemoveArchiveNameTF.setText("Ej: factura_Enero2");
+        getContentPane().add(RemoveArchiveNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 240, 50));
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs/BackgroundArchiveOperations.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 500));
 
@@ -214,7 +221,24 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AddArchiveButtActionPerformed
 
     private void RemoveArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveArchiveButtActionPerformed
-        // TODO add your handling code here:
+        String user = RemoveArchiveUNameTF.getText();
+        String nombre = RemoveArchiveNameTF.getText();
+        Usuario pAux = getUsuarios().getpFirst();
+        int cont = 0;
+        while (pAux!=null){
+            if (pAux.getNombre().equalsIgnoreCase(user)){
+                Usuario pAux2 = (pAux.getDocumentos().getpFirst());
+                while(pAux2!=null){
+                    if(pAux2.getNombre().equalsIgnoreCase(nombre)){
+                        break;
+                    }
+                    cont++;
+                    pAux2=pAux2.getpNext();
+                }
+                pAux.getDocumentos().DeleteAtIndex(cont);
+            }
+            pAux=pAux.getpNext();
+        }
     }//GEN-LAST:event_RemoveArchiveButtActionPerformed
 
     private void SendArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendArchiveButtActionPerformed
@@ -284,7 +308,8 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
     private javax.swing.JLabel Lab2;
     private javax.swing.JLabel Lab3;
     private javax.swing.JButton RemoveArchiveButt;
-    private javax.swing.JTextField RemoveArchiveTF;
+    private javax.swing.JTextField RemoveArchiveNameTF;
+    private javax.swing.JTextField RemoveArchiveUNameTF;
     private javax.swing.JButton SendArchiveButt;
     private javax.swing.JTextField SendArchiveTF;
     private javax.swing.JLabel Title4;
