@@ -8,6 +8,7 @@ import java.awt.Color;
 import CSV.CSV;
 import Tree_clases.HashTable;
 import Tree_clases.Usuario;
+import java.awt.event.MouseEvent;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
@@ -21,7 +22,6 @@ public class UsersOperationsUI extends javax.swing.JFrame {
     public HashTable h;
     CSV csv_methods ;
     String AddUserNombreEj = "Ej: Juan1789";
-    String AddUserPrioEj = "Ej: 1";
 
     /**
      * Creates new form UsersOperationsUI
@@ -47,10 +47,12 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-         this.csv_methods = new CSV();
-
+        this.csv_methods = new CSV();
         this.h = csv_methods.getHashTable(getPath());
-
+    }
+    
+    public void Mouseclicked(MouseEvent e){
+        AddUserNameTF.setText("");
     }
 
     /**
@@ -88,11 +90,26 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         AddUserNameTF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         AddUserNameTF.setForeground(new java.awt.Color(153, 153, 153));
         AddUserNameTF.setText("Ej: Juan1789");
+        AddUserNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddUserNameTFMouseClicked(evt);
+            }
+        });
+        AddUserNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddUserNameTFActionPerformed(evt);
+            }
+        });
         getContentPane().add(AddUserNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 370, 50));
 
         RemoveUserTF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         RemoveUserTF.setForeground(new java.awt.Color(153, 153, 153));
         RemoveUserTF.setText("Ej: Simon287");
+        RemoveUserTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveUserTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(RemoveUserTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 560, 50));
 
         Lab1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -138,6 +155,11 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         AddUserPrioTF.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         AddUserPrioTF.setForeground(new java.awt.Color(153, 153, 153));
         AddUserPrioTF.setText("Ej: 1");
+        AddUserPrioTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddUserPrioTFMouseClicked(evt);
+            }
+        });
         AddUserPrioTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddUserPrioTFActionPerformed(evt);
@@ -162,7 +184,6 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         AddUserNameTF.setForeground(new java.awt.Color(153, 153, 153));
         AddUserNameTF.setText(AddUserNombreEj);
         AddUserPrioTF.setForeground(new java.awt.Color(153, 153, 153));
-        AddUserPrioTF.setText(AddUserPrioEj);
         Usuario existe = h.search(AddUserNameTF.getText());
         if (AddUserNameTF.getText().equalsIgnoreCase("") || existe != null){
            if (AddUserNameTF.getText().equalsIgnoreCase("")){
@@ -228,6 +249,31 @@ public class UsersOperationsUI extends javax.swing.JFrame {
         csv_methods.DeleteCSV(getPath(), csv_methods.DeleteLine(getPath(), nombre));
         JOptionPane.showMessageDialog(null, "EL CSV SE HA ACTUALIZADO");
     }//GEN-LAST:event_RemoveUserButtActionPerformed
+
+    private void AddUserNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserNameTFActionPerformed
+        //
+    }//GEN-LAST:event_AddUserNameTFActionPerformed
+
+    private void AddUserNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddUserNameTFMouseClicked
+        if (!AddUserNameTF.equals(AddUserNameTF.getText())) {
+            AddUserNameTF.setText("");
+            AddUserNameTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_AddUserNameTFMouseClicked
+
+    private void AddUserPrioTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddUserPrioTFMouseClicked
+        if (!AddUserPrioTF.equals(AddUserPrioTF.getText())) {
+            AddUserPrioTF.setText("");
+            AddUserPrioTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_AddUserPrioTFMouseClicked
+
+    private void RemoveUserTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveUserTFMouseClicked
+        if (!RemoveUserTF.equals(RemoveUserTF.getText())) {
+            RemoveUserTF.setText("");
+            RemoveUserTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_RemoveUserTFMouseClicked
 
     /**
      * @param args the command line arguments

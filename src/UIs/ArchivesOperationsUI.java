@@ -104,7 +104,13 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         getContentPane().add(Title4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 310, 40));
 
         AddArchiveNameTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        AddArchiveNameTF.setForeground(new java.awt.Color(153, 153, 153));
         AddArchiveNameTF.setText("Ej: factura_Enero2");
+        AddArchiveNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddArchiveNameTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(AddArchiveNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 190, 50));
 
         Lab1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -113,7 +119,13 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 40));
 
         RemoveArchiveUNameTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        RemoveArchiveUNameTF.setForeground(new java.awt.Color(153, 153, 153));
         RemoveArchiveUNameTF.setText("Ej: Juan1789");
+        RemoveArchiveUNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveArchiveUNameTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(RemoveArchiveUNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 310, 50));
 
         Lab2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -127,6 +139,13 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         getContentPane().add(Lab3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 740, 30));
 
         SendArchiveTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        SendArchiveTF.setForeground(new java.awt.Color(153, 153, 153));
+        SendArchiveTF.setText("Ej: factura_Enero2");
+        SendArchiveTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SendArchiveTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(SendArchiveTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 580, 50));
 
         AddArchiveButt.setBackground(new java.awt.Color(102, 255, 102));
@@ -170,15 +189,33 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         getContentPane().add(BackToSOButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, 160, 50));
 
         AddArchiveUNameTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        AddArchiveUNameTF.setForeground(new java.awt.Color(153, 153, 153));
         AddArchiveUNameTF.setText("Ej: Juan1789");
+        AddArchiveUNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddArchiveUNameTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(AddArchiveUNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 200, 50));
 
         AddArchiveSizeTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        AddArchiveSizeTF.setForeground(new java.awt.Color(153, 153, 153));
         AddArchiveSizeTF.setText("Ej: 58");
+        AddArchiveSizeTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddArchiveSizeTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(AddArchiveSizeTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 60, 50));
 
         AddArchiveTypeTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        AddArchiveTypeTF.setForeground(new java.awt.Color(153, 153, 153));
         AddArchiveTypeTF.setText("Ej: PDF");
+        AddArchiveTypeTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddArchiveTypeTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(AddArchiveTypeTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 70, 50));
 
         AddDocuPriorityButt.setBackground(new java.awt.Color(255, 182, 182));
@@ -192,7 +229,13 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         getContentPane().add(AddDocuPriorityButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 70, 50));
 
         RemoveArchiveNameTF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        RemoveArchiveNameTF.setForeground(new java.awt.Color(153, 153, 153));
         RemoveArchiveNameTF.setText("Ej: factura_Enero2");
+        RemoveArchiveNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RemoveArchiveNameTFMouseClicked(evt);
+            }
+        });
         getContentPane().add(RemoveArchiveNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 240, 50));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs/BackgroundArchiveOperations.png"))); // NOI18N
@@ -260,6 +303,55 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
             AddDocuPriorityButt.setText("NO");
         }
     }//GEN-LAST:event_AddDocuPriorityButtActionPerformed
+
+    private void AddArchiveNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddArchiveNameTFMouseClicked
+        if (!AddArchiveNameTF.equals(AddArchiveNameTF.getText())) {
+            AddArchiveNameTF.setText("");
+            AddArchiveNameTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_AddArchiveNameTFMouseClicked
+
+    private void AddArchiveUNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddArchiveUNameTFMouseClicked
+        if (!AddArchiveUNameTF.equals(AddArchiveUNameTF.getText())) {
+            AddArchiveUNameTF.setText("");
+            AddArchiveUNameTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_AddArchiveUNameTFMouseClicked
+
+    private void AddArchiveSizeTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddArchiveSizeTFMouseClicked
+        if (!AddArchiveSizeTF.equals(AddArchiveSizeTF.getText())) {
+            AddArchiveSizeTF.setText("");
+            AddArchiveSizeTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_AddArchiveSizeTFMouseClicked
+
+    private void AddArchiveTypeTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddArchiveTypeTFMouseClicked
+        if (!AddArchiveTypeTF.equals(AddArchiveTypeTF.getText())) {
+            AddArchiveTypeTF.setText("");
+            AddArchiveTypeTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_AddArchiveTypeTFMouseClicked
+
+    private void RemoveArchiveUNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveArchiveUNameTFMouseClicked
+        if (!RemoveArchiveUNameTF.equals(RemoveArchiveUNameTF.getText())) {
+            RemoveArchiveUNameTF.setText("");
+            RemoveArchiveUNameTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_RemoveArchiveUNameTFMouseClicked
+
+    private void RemoveArchiveNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RemoveArchiveNameTFMouseClicked
+        if (!RemoveArchiveNameTF.equals(RemoveArchiveNameTF.getText())) {
+            RemoveArchiveNameTF.setText("");
+            RemoveArchiveNameTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_RemoveArchiveNameTFMouseClicked
+
+    private void SendArchiveTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SendArchiveTFMouseClicked
+        if (!SendArchiveTF.equals(SendArchiveTF.getText())) {
+            SendArchiveTF.setText("");
+            SendArchiveTF.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_SendArchiveTFMouseClicked
 
     /**
      * @param args the command line arguments
