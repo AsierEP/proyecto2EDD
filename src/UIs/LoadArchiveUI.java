@@ -100,13 +100,6 @@ public class LoadArchiveUI extends javax.swing.JFrame {
             ventanaload.setVisible(true);
             JOptionPane.showMessageDialog(null, "El archivo no es del tipo correcto");
         }
-        
-        
-        
-        //Visualización de la segunda ventana
-        this.setVisible(false);
-        OperativeSistemUI ventanaoperative = new OperativeSistemUI(usuarios);
-        ventanaoperative.setVisible(true);
     }//GEN-LAST:event_LoadArchiveButtActionPerformed
 
     /**
