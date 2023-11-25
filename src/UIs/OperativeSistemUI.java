@@ -18,13 +18,14 @@ public class OperativeSistemUI extends javax.swing.JFrame {
      */
         private String path;
     private static HashTable usuarios;
+    private List users;
     
     public OperativeSistemUI(HashTable h) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         usuarios = h;
-        TAUsers.setText(usuarios.RecorrerPrint());
+        TAUsers.setText(usuarios.RecorrerPrint() + "\n" + "\t");
     }
     
 
@@ -74,6 +75,7 @@ public class OperativeSistemUI extends javax.swing.JFrame {
 
         TAUsers.setEditable(false);
         TAUsers.setColumns(20);
+        TAUsers.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         TAUsers.setRows(5);
         jScrollPane1.setViewportView(TAUsers);
 

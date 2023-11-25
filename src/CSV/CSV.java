@@ -44,10 +44,11 @@ public class CSV {
               }else if (fields[1].equalsIgnoreCase("prioridad_alta")){
                   x=1;
               }
-               Usuario user = new Usuario(fields[0], x);
-              users.Add(user);
+              Usuario user = new Usuario(fields[0], x);
+              if (!user.getNombre().equalsIgnoreCase("usuario")){
+               users.Add(user);
+              }
                System.out.println(user.getNombre());
-
               line = br.readLine();
            }
 

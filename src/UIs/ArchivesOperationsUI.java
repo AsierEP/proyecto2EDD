@@ -260,6 +260,7 @@ public class ArchivesOperationsUI extends javax.swing.JFrame {
         }
         
         JOptionPane.showMessageDialog(null, "Documento añadido exitosamente");
+        System.out.println(user);
         
     }//GEN-LAST:event_AddArchiveButtActionPerformed
 
