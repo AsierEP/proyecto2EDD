@@ -6,7 +6,7 @@ package trreeclass;
 
 /**
  *
- * @author dell
+ * @author Dell
  */
 public class Timer {
     

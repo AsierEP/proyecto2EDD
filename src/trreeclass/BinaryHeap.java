@@ -3,7 +3,7 @@ package trreeclass;
 
 /**
  *
- * @author dell
+ * @author Sebastian
  */
 public class BinaryHeap {
  

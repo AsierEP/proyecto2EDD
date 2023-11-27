@@ -5,7 +5,7 @@ package trreeclass;
 
 /**
  *
- * @author dell
+ * @author Sebastian
  */
 public class List implements Methods_Lista{
     

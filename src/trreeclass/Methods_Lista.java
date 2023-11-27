@@ -3,7 +3,7 @@ package trreeclass;
 
 /**
  *
- * @author dell
+ * @author Dell
  */
 public interface Methods_Lista {
 
