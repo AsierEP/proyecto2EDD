@@ -1,33 +1,39 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package UIs;
+package UIs_trial;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 /**
  *
  * @author Dell
  */
-public class TimerUI extends javax.swing.JFrame {
-    
+public class TimerUI extends javax.swing.JFrame{    
     
     private Timer myTimer;
-    public int segundos = 0;
+    private int dias = 0;
+    private int horas = 0;
+    private int minutos = 0;
+    private int segundos = 0;
+    private int segundosTi = 0;
+    private boolean isRunning = true;
 
 
     /**
      * Creates new form TimerUI
      */
-    public TimerUI() {
+    public TimerUI(){
         initComponents();
         myTimer = new Timer(1000, (ActionEvent e) -> {
-            StartTimer();
+            if(isRunning){
+                StartTimer();
+            }
         });
         this.setResizable(false);
+        myTimer.start();
     }
     
     private void StartTimer(){
@@ -38,10 +44,27 @@ public class TimerUI extends javax.swing.JFrame {
     
     private void UpdateTime(){
         segundos++;
+        segundosTi++;
+        
+        if(segundos == 60){
+            segundos = 0;
+            minutos++;
+        }
+        if(minutos == 60){
+            minutos = 0;
+            horas++;
+        }
+        if(horas == 24){
+            horas = 0;
+            dias++;
+        }
     }
+
+    
     private void UpdateLabel(){
-        String cronometro = String.valueOf(segundos);
+        String cronometro = dias + "d:" + horas + "h:" + minutos + "m:" + segundos + "s";
         TimerLab.setText(cronometro);
+        TimerLab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     }
 
     /**
@@ -57,8 +80,6 @@ public class TimerUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         TimerLab = new javax.swing.JLabel();
-        StartTimerButt = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 255));
@@ -67,68 +88,46 @@ public class TimerUI extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(102, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
         jLabel2.setText("Cronómetro");
-
+        
+        
         TimerLab.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        TimerLab.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        TimerLab.setText("0");
+        TimerLab.setText("0d : 0h : 0m : 0s");
 
-        StartTimerButt.setBackground(new java.awt.Color(51, 255, 51));
-        StartTimerButt.setText("Iniciar");
-        StartTimerButt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StartTimerButtActionPerformed(evt);
-            }
-        });
+      
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel3.setText("s");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(StartTimerButt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TimerLab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TimerLab, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(StartTimerButt, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(TimerLab)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
+
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void StartTimerButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartTimerButtActionPerformed
-        myTimer.start();
-        StartTimerButt.setEnabled(false);
-    }//GEN-LAST:event_StartTimerButtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,11 +165,17 @@ public class TimerUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton StartTimerButt;
     private javax.swing.JLabel TimerLab;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    public int getSegundosTi() {
+        return segundosTi;
+    }
+
+    public void setSegundosTi(int segundos) {
+        this.segundosTi = segundos;
+    } 
 }

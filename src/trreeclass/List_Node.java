@@ -1,21 +1,21 @@
 
-package Tree_clases;
+package trreeclass;
 
 /**
  *
  * @author dell
  */
-public class Nodo_list {
+public class List_Node {
     
     private Object element;
-    private Nodo_list pNext;
+    private List_Node pNext;
     
     /**
      *Constructor del nodo
      * 
      * @param element el elemento para ser guardado en el nodo
      */
-    public Nodo_list(Object element){
+    public List_Node(Object element){
         this.element = element;
         this.pNext = null;
     }
@@ -28,13 +28,14 @@ public class Nodo_list {
         this.element = element;
     }
 
-    public Nodo_list getpNext() {
+    public List_Node getNext() {
         return pNext;
     }
 
-    public void setpNext(Nodo_list pNext) {
-        this.pNext = pNext;
+    public void setNext(List_Node next) {
+        this.pNext = next;
     }
     
- 
+    
+    
 }

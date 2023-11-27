@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UIs;
+package UIs_trial;
 
 import CSV.CSV;
-import Tree_clases.HashTable;
-import Tree_clases.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import trreeclass.BinaryHeap;
 
 /**
  *
@@ -18,16 +17,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class LoadArchiveUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoadArchive
+     * Creates new form LoadArchiveUI
      */
     public LoadArchiveUI() {
         initComponents();
-        this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
-    
-    private String path;
-    public static HashTable usuarios;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,7 +36,7 @@ public class LoadArchiveUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Title1 = new javax.swing.JLabel();
-        Lab1 = new javax.swing.JLabel();
+        lab1 = new javax.swing.JLabel();
         LoadArchiveButt = new javax.swing.JButton();
         Background1 = new javax.swing.JLabel();
 
@@ -48,58 +44,58 @@ public class LoadArchiveUI extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
         Title1.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         Title1.setForeground(new java.awt.Color(255, 255, 255));
         Title1.setText("Proyecto 2: Cola de impresión con montículo binario");
-        getContentPane().add(Title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 660, 60));
+        getContentPane().add(Title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 680, 60));
 
-        Lab1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        Lab1.setForeground(new java.awt.Color(255, 255, 255));
-        Lab1.setText("Bienvenido al proyecto de la cola de impresión con montículo binario, por favor cargue un archivo CSV");
-        getContentPane().add(Lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 880, 40));
+        lab1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lab1.setForeground(new java.awt.Color(255, 255, 255));
+        lab1.setText("Bienvenido, por favor seleccione un archivo de tipo CSV para iniciar el programa");
+        getContentPane().add(lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 540, 50));
 
-        LoadArchiveButt.setBackground(new java.awt.Color(102, 102, 255));
-        LoadArchiveButt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        LoadArchiveButt.setText("Cargar archivo de tipo CSV");
+        LoadArchiveButt.setBackground(new java.awt.Color(255, 51, 255));
+        LoadArchiveButt.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        LoadArchiveButt.setText("Cargar archivo");
         LoadArchiveButt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoadArchiveButtActionPerformed(evt);
             }
         });
-        getContentPane().add(LoadArchiveButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 320, 70));
+        getContentPane().add(LoadArchiveButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 430, 70));
 
-        Background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs/BackGroundLoad.png"))); // NOI18N
-        getContentPane().add(Background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 530));
+        Background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UIs_trial/BackGroundLoad.png"))); // NOI18N
+        getContentPane().add(Background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoadArchiveButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadArchiveButtActionPerformed
-        //Cargar archivo
         JFileChooser jFileChooser = new JFileChooser();
         FileNameExtensionFilter filtrado = new FileNameExtensionFilter("CSV","csv");
         jFileChooser.setFileFilter(filtrado);
-        
         int respuesta = jFileChooser.showOpenDialog(this);
-        
         if (respuesta==JFileChooser.APPROVE_OPTION) {
             String Ruta = jFileChooser.getSelectedFile().getPath();
-            JOptionPane.showMessageDialog(null, "El archivo se cargó correctamente");
+            JOptionPane.showMessageDialog(null, "El archivo se leyó ");
             CSV c=new CSV();
-            usuarios = c.leer(Ruta);
-            OperativeSistemUI ventana = new OperativeSistemUI(usuarios);
-
-            ventana.setUsuarios(usuarios);
-            ventana.setVisible(true);
+            BinaryHeap bin = new BinaryHeap(); 
+            OperativeSistemUI ventanaOS = new OperativeSistemUI();
+            System_Usuarios ventanaSU = new System_Usuarios();
+            TimerUI timer = new TimerUI();
+            timer.setVisible(true);
+            ventanaSU.setPath(Ruta);
+            ventanaSU.setVisible(true);
+            ventanaOS.setPath(Ruta);
+            ventanaOS.setUsuarios(c.leer(Ruta));
+            ventanaOS.setSU(ventanaSU);
+            ventanaOS.setBh(bin);
+            ventanaOS.setTime(timer);
+            ventanaOS.setVisible(true);
             this.dispose();
-        }else{
-            this.setVisible(false);
-            LoadArchiveUI ventanaload = new LoadArchiveUI();
-            ventanaload.setVisible(true);
-            JOptionPane.showMessageDialog(null, "El archivo no es del tipo correcto");
-        }
+        } 
     }//GEN-LAST:event_LoadArchiveButtActionPerformed
 
     /**
@@ -139,25 +135,9 @@ public class LoadArchiveUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background1;
-    private javax.swing.JLabel Lab1;
     private javax.swing.JButton LoadArchiveButt;
     private javax.swing.JLabel Title1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lab1;
     // End of variables declaration//GEN-END:variables
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public HashTable getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(HashTable usuarios) {
-        this.usuarios = usuarios;
-    }
 }

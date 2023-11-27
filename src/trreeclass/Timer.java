@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Tree_clases;
+package trreeclass;
 
 /**
  *
@@ -12,11 +12,9 @@ public class Timer {
     
     private int segundos;
     
-    
     public Timer() {
         this.segundos = 0;
     }
-    
     
     public int getSegundos() {
         return segundos;
@@ -27,16 +25,15 @@ public class Timer {
     }
     
     public void run(){
-     
             try{
                  Thread.sleep(1000);
                  segundos++;
             }
            catch(InterruptedException e){
                e.printStackTrace();
-           }
         }
     }
+}
     
     
 

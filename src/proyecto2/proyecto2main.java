@@ -4,8 +4,15 @@
  */
 package proyecto2;
 
-import UIs.LoadArchiveUI;
-import UIs.TimerUI;
+import UIs_trial.LoadArchiveUI;
+import javax.swing.JFrame;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.javafx.*;
+import org.graphstream.ui.view.*;
+import org.graphstream.ui.layout.*;
 
 /**
  *
@@ -17,6 +24,7 @@ public class proyecto2main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.setProperty("org.graphstream.ui", "swing");
         LoadArchiveUI ventanaload = new LoadArchiveUI();
         ventanaload.setVisible(true);
     }
